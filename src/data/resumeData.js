@@ -98,10 +98,10 @@ export const experienceData = [
     location: "Remote",
     tag: "Remote Sensing & Geospatial ML",
     // Anchor of the matching project case study, linked from the timeline
-    caseStudy: "project-geospatial-research",
+    caseStudy: "research",
     // Shown on the site instead of the bullets, which the case study already covers (the resume keeps the bullets)
     brief:
-      "Built a Python pipeline for multi-band satellite imagery, benchmarked four segmentation models, and developed a malaria risk model with over 90% accuracy. Findings presented at two institutions.",
+      "Built a Python pipeline that turns multi-band satellite imagery into NDWI patches, then trained and compared five deep-learning models that map malaria-risk zones. Findings presented at two institutions.",
     bullets: [
       "Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.",
       "Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.",
@@ -128,9 +128,10 @@ export const experienceData = [
     tag: "Environmental Operations & BI",
     bullets: [
       "Analyzed operational and environmental datasets in Python, SQL, and Excel to identify process inefficiencies and presented actionable insights to senior management.",
-      "Gathered requirements from cross-functional teams and automated recurring reports and visualizations, replacing manual data compilation."
+      "Gathered requirements from cross-functional teams and automated recurring reports and visualizations, replacing manual data compilation.",
+      "Built Power BI dashboards to support business decisions."
     ],
-    technologies: ["Python", "SQL", "Advanced Excel", "Process Inefficiency Analysis", "Automated Reporting"]
+    technologies: ["Power BI", "Python", "SQL", "Advanced Excel", "Process Inefficiency Analysis", "Automated Reporting"]
   }
 ];
 
@@ -202,39 +203,6 @@ export const projectsData = [
       "Built an ML-driven ATS resume-scoring engine and automated eligibility filtering system, cutting manual shortlisting time and standardizing candidate evaluation across four stakeholder roles.",
       "Developed a Python/FastAPI analytics service layer exposing role-based insights via JWT-secured REST APIs, applying EDA and model evaluation (F1, AUC) to iteratively improve prediction accuracy."
     ]
-  },
-  {
-    id: "geospatial-research",
-    title: "Multi-Spectral Vision Benchmark & Malaria Risk Model",
-    tagline: "Automated TIFF extraction pipeline & 4-architecture segmentation benchmarking",
-    year: "2025 – 2026",
-    stack: ["DeepLabV3+", "MobileNetV2-CBAM", "ResNet-50", "VGG19", "Python TIFF", "Geospatial"],
-    githubUrl: null,
-    repoNote: "Research code not public",
-    architecture: [
-      { stage: "Satellite data", items: ["Multi-band TIFF imagery"] },
-      { stage: "Python pipeline", items: ["Band extraction", "NDWI water index"] },
-      { stage: "Segmentation benchmark", items: ["DeepLabV3+ · MobileNetV2-CBAM", "ResNet-50 · VGG19", "Ranked by IoU & F1"] },
-      { stage: "Risk model", items: ["Geospatial feature engineering", ">90% accuracy"] },
-      { stage: "Output", items: ["Heatmaps of high-risk zones"] }
-    ],
-    decisions: [
-      "Band extraction and NDWI computation turned into one reproducible Python pipeline instead of manual per-image processing.",
-      "Four segmentation architectures compared on the same multi-spectral imagery, with the best chosen by IoU and F1.",
-      "Risk predictions delivered as heatmaps of high-risk zones for public-health decisions."
-    ],
-    codeSnippets: [],
-    problem:
-      "Band extraction and water-index calculation on multi-band satellite TIFFs were done by hand, one image at a time, and the imagery needed to become malaria-risk maps for public-health decisions.",
-    contribution:
-      "Built a reproducible Python pipeline for band extraction and NDWI computation, benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on IoU and F1, and developed a malaria risk prediction model using geospatial feature engineering.",
-    outcome:
-      "Manual per-image processing replaced by an automated pipeline, a risk model above 90% accuracy with heatmaps of high-risk zones, and findings presented at two institutions.",
-    bullets: [
-      "Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.",
-      "Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.",
-      "Developed a malaria risk prediction model with over 90% accuracy using geospatial feature engineering, delivering heatmaps of high-risk zones for public health decisions."
-    ]
   }
 ];
 
@@ -276,7 +244,7 @@ export const skillEvidence = [
       { name: "ETL (stored procedures)", where: ["project-data-warehouse"] },
       { name: "Dimensional modeling (star schema)", where: ["project-data-warehouse"] },
       { name: "Medallion architecture", where: ["project-data-warehouse"] },
-      { name: "Python data pipelines", where: ["project-geospatial-research", "exp-ml-research"] },
+      { name: "Python data pipelines", where: ["research"] },
       { name: "MongoDB", where: ["project-campus-connect"] },
       { name: "Git", where: ["project-data-warehouse"] }
     ]
@@ -284,6 +252,7 @@ export const skillEvidence = [
   {
     group: "Analytics",
     skills: [
+      { name: "Power BI dashboards", where: ["exp-business-analyst"] },
       { name: "Python analysis", where: ["exp-business-analyst"] },
       { name: "Excel & automated reporting", where: ["exp-business-analyst"] },
       { name: "KPI dashboards", where: ["project-campus-connect"] },
@@ -294,10 +263,10 @@ export const skillEvidence = [
   {
     group: "Machine Learning",
     skills: [
-      { name: "Scikit-learn", where: ["project-campus-connect", "project-geospatial-research"] },
-      { name: "PyTorch segmentation models", where: ["project-geospatial-research", "exp-ml-research"] },
-      { name: "Model evaluation (F1, AUC, IoU)", where: ["project-campus-connect", "project-geospatial-research"] },
-      { name: "Geospatial feature engineering", where: ["project-geospatial-research"] }
+      { name: "Scikit-learn", where: ["project-campus-connect"] },
+      { name: "Deep learning (DeepLabV3+, ResNet-50, VGG19)", where: ["research"] },
+      { name: "Model evaluation (precision, recall, F1)", where: ["research", "project-campus-connect"] },
+      { name: "Satellite imagery & NDWI", where: ["research"] }
     ]
   },
   {
@@ -313,16 +282,44 @@ export const skillEvidence = [
 export const evidenceLabels = {
   "project-data-warehouse": "Data Warehouse",
   "project-campus-connect": "Campus Connect",
-  "project-geospatial-research": "Satellite ML Research",
+  research: "ML Research",
   "exp-business-analyst": "BA Internship",
-  "exp-ml-research": "ML Research Internship",
   education: "IBM SQL Certificate"
 };
 
 // Listed without a linked project (yet)
 export const otherSkills = [
-  "Pandas", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Statistical Analysis",
+  "Pandas", "NumPy", "Matplotlib", "Seaborn", "Statistical Analysis",
   "TensorFlow", "NLP", "LLMs", "LangChain", "Hugging Face",
   "Node.js", "Express.js", "Docker", "AWS (EC2, S3)", "PostgreSQL", "MySQL",
   "Security frameworks (NIST)", "Linux"
 ];
+
+// ML research internship, from the internship presentation (Somaiya × Universiti Teknologi Malaysia)
+export const researchData = {
+  pipeline: [
+    { stage: "Satellite TIFFs", items: ["Multi-band imagery", "Bands read per image"] },
+    { stage: "NDWI", items: ["Water-index map", "Normalized pixel values"] },
+    { stage: "64×64 patches", items: ["Risk / no-risk labels", "Rotation, flip, zoom"] },
+    { stage: "5 models", items: ["Segmentation + patch classifiers", "Precision, recall, F1"] },
+    { stage: "Risk maps", items: ["Heatmaps & contours", "Binary high-risk zones"] }
+  ],
+  // Approximate values (≈) are as stated on the slides
+  models: [
+    { name: "MobileNetV2 + CBAM", kind: "Hybrid attention classifier", accuracy: 0.98, precision: 0.98, recall: 0.98, f1: 0.98, note: "200 test patches" },
+    { name: "VGG19", kind: "Transfer learning", accuracy: 0.91, precision: 0.96, recall: 0.84, f1: null, approx: ["accuracy"] },
+    { name: "ResNet-50", kind: "Residual network", accuracy: 0.902, precision: 0.9, recall: 0.9, f1: 0.9 },
+    { name: "Inception-style CNN", kind: "Multi-scale filters", accuracy: 0.9, precision: 0.92, recall: 0.85, f1: 0.9, approx: ["accuracy", "f1"] },
+    { name: "DeepLabV3+", kind: "Pixel-wise segmentation", accuracy: 0.8247, precision: 0.8052, recall: 0.9724, f1: 0.881, note: "23.1M test pixels" }
+  ],
+  slides: [
+    { src: "/research/deeplab-heatmap.webp", title: "DeepLabV3+ risk heatmap", caption: "Water-body context, target mask and the model's pixel-wise malaria-risk map." },
+    { src: "/research/vgg19-heatmaps.webp", title: "VGG19 four-panel risk map", caption: "NDWI image, risk heatmap, overlay, and patches above 0.5 probability." },
+    { src: "/research/resnet50-contour.webp", title: "ResNet-50 risk contours", caption: "Risk bands from low to very high, with contour lines and probability labels." },
+    { src: "/research/hybrid-heatmap.webp", title: "Hybrid model risk grid", caption: "MobileNetV2 + CBAM attention, scoring each patch of the region." },
+    { src: "/research/inception-contour.webp", title: "Inception-style CNN contours", caption: "Contour map separating low, moderate, high and very-high-risk zones." },
+    { src: "/research/hybrid-report.webp", title: "Hybrid model evaluation", caption: "0.98 accuracy, precision, recall and F1 on the held-out patches." },
+    { src: "/research/deeplab-report.webp", title: "DeepLabV3+ evaluation", caption: "Pixel-wise metrics and confusion matrix over 23.1M test pixels." },
+    { src: "/research/deeplab-curves.webp", title: "DeepLabV3+ training curves", caption: "Accuracy and loss across 30 epochs for training and validation." }
+  ]
+};

@@ -74,38 +74,81 @@
   width: 100%;
 }
 
-/* Architecture flow: dot travels down (mobile) or right (desktop) along each connector */
+/* Architecture flow: a dot travels right along each connector */
 .flow-dot {
-  left: 50%;
-  top: 0;
+  left: 0;
+  top: 50%;
   transform: translate(-50%, -50%);
-  animation: flow-down 1.6s ease-in-out infinite;
+  animation: flow-right 1.6s ease-in-out infinite;
 }
 
-@keyframes flow-down {
-  from { top: 0; opacity: 0; }
+@keyframes flow-right {
+  from { left: 0; opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  to { top: 100%; opacity: 0; }
-}
-
-@media (min-width: 1024px) {
-  .flow-dot {
-    left: 0;
-    top: 50%;
-    animation-name: flow-right;
-  }
-
-  @keyframes flow-right {
-    from { left: 0; opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    to { left: 100%; opacity: 0; }
-  }
+  to { left: 100%; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .flow-dot { display: none; }
+}
+
+/* Hero medallion stack (CSS 3D). --rx / --rz are driven from MedallionStack.jsx */
+.medallion-stack {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 58deg)) rotateZ(var(--rz, -38deg));
+}
+
+.medallion-plate {
+  transform-style: preserve-3d;
+  backdrop-filter: blur(1px);
+}
+
+.medallion-packet {
+  transform: translateZ(var(--top));
+  opacity: 0;
+  box-shadow: 0 0 10px 2px rgba(233, 120, 79, 0.55);
+  animation: packet-drop 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes packet-drop {
+  0% { transform: translateZ(var(--top)); opacity: 0; }
+  12% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateZ(2px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medallion-packet { display: none; }
+}
+
+/* Tech marquee */
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Research carousel auto-advance progress */
+.carousel-progress {
+  width: 0;
+  animation-name: carousel-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes carousel-progress {
+  to { width: 100%; }
 }
 
 /* Custom Scrollbar */
@@ -134,4 +177,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Hide the default disclosure triangle (custom chevron is used) */
+summary::-webkit-details-marker {
+  display: none;
 }

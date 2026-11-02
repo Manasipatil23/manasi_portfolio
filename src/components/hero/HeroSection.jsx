@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ArrowDown, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
 import ResumeLink from '../ui/ResumeLink';
+import MedallionStack from './MedallionStack';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -9,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection({ onOpenResumeModal }) {
   const sectionRef = useRef(null);
-  const roseRef = useRef(null);
+  const visualRef = useRef(null);
   const textColRef = useRef(null);
   const kickerRef = useRef(null);
   const nameRef = useRef(null);
@@ -55,15 +56,15 @@ export default function HeroSection({ onOpenResumeModal }) {
         { opacity: 1, y: 0, duration: 0.5 },
         '-=0.2'
       )
-      .fromTo(roseRef.current,
+      .fromTo(visualRef.current,
         { opacity: 0, scale: 0.94, y: 24 },
         { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: 'power2.out' },
         '-=0.8'
       );
 
-      // —— PARALLAX: rose drifts up slower than scroll ——
+      // —— PARALLAX: 3D stack drifts up slower than scroll ——
       if (window.innerWidth >= 768) {
-        gsap.to(roseRef.current, {
+        gsap.to(visualRef.current, {
           yPercent: -14,
           ease: 'none',
           scrollTrigger: {
@@ -188,29 +189,11 @@ export default function HeroSection({ onOpenResumeModal }) {
         </div>
 
         {/* Right Column (5 cols): Beautiful Transparent Botanical Rose Spray */}
-        {/* Decorative, so it's left out on phones and tablets where it would push content down */}
-        <div className="hidden lg:flex lg:col-span-4 relative items-center justify-center min-h-[380px]">
-          
-          <div ref={roseRef} className="relative w-full max-w-[280px] flex flex-col items-center will-change-transform">
-            <picture>
-              <source srcSet="/images/coral_rose_transparent.webp" type="image/webp" />
-              <img
-                src="/images/coral_rose_transparent.png"
-                alt=""
-                width="896"
-                height="1200"
-                className="w-full h-auto object-contain drop-shadow-md select-none transition-transform duration-500 hover:scale-[1.025]"
-                loading="eager"
-              />
-            </picture>
-
-            {/* Subtle Editorial Caption below the botanical art */}
-            <div className="mt-2 flex items-center justify-between w-full font-mono text-[11px] text-[#174B79]/80 px-4">
-              <span className="tracking-widest uppercase">UTM ML Research</span>
-              <span className="text-[#E9784F] font-bold">2025 — 2026</span>
-            </div>
+        {/* 3D medallion stack (desktop only, so the phone hero stays short) */}
+        <div className="hidden lg:flex lg:col-span-4 relative items-center justify-center">
+          <div ref={visualRef} className="w-full will-change-transform">
+            <MedallionStack />
           </div>
-
         </div>
 
       </div>

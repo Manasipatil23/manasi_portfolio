@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { projectsData } from '../../data/resumeData';
-import { Github, ArrowUpRight, CheckCircle2, Lock } from 'lucide-react';
+import { Github, ArrowUpRight, CheckCircle2, ChevronDown, Lock } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeader from '../ui/SectionHeader';
@@ -80,8 +80,8 @@ function CaseStudy({ project, index }) {
         <ArchitectureFlow stages={project.architecture} label="How the data flows" />
       </div>
 
-      {/* What I built + design choices */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      {/* What I built (design choices fold away to keep the card short) */}
+      <div className="mb-6">
         <div>
           <Label>What I built</Label>
           <ul className="space-y-2">
@@ -93,9 +93,12 @@ function CaseStudy({ project, index }) {
             ))}
           </ul>
         </div>
-        <div>
-          <Label>Design choices</Label>
-          <ul className="space-y-2">
+        <details className="group mt-4 rounded-xl border border-[#D9C9B7] bg-[#F5F0E8]/60 open:bg-[#F5F0E8]">
+          <summary className="flex items-center justify-between gap-3 cursor-pointer list-none px-4 py-2.5 font-mono text-xs uppercase tracking-wider font-bold text-[#174B79] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9784F] rounded-xl">
+            Design choices ({project.decisions.length})
+            <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
+          </summary>
+          <ul className="space-y-2 px-4 pb-4">
             {project.decisions.map((d) => (
               <li key={d} className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#174B79] mt-2 shrink-0" />
@@ -103,7 +106,7 @@ function CaseStudy({ project, index }) {
               </li>
             ))}
           </ul>
-        </div>
+        </details>
       </div>
 
       {/* Real code excerpts, only when added in resumeData */}
@@ -167,7 +170,7 @@ export default function ProjectsSection() {
       <SectionHeader
         kicker="01 • Selected Work"
         title="Projects"
-        intro="Three projects across the data stack: a SQL warehouse, an analytics platform, and an ML research pipeline."
+        intro="A SQL warehouse built layer by layer, and an analytics platform with ML on top."
       />
 
       {/* Jump links */}

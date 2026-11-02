@@ -10,6 +10,7 @@ export default function Navbar({ onOpenResumeModal }) {
 
   const navLinks = [
     { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'Research', href: '#research', id: 'research' },
     { label: 'Experience', href: '#experience', id: 'experience' },
     { label: 'Skills', href: '#skills', id: 'skills' },
     { label: 'Education', href: '#education', id: 'education' },

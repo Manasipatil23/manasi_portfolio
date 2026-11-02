@@ -8,7 +8,7 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <SectionHeader
-        kicker="03 • Skills"
+        kicker="04 • Skills"
         title="Skills, with Evidence"
         intro="Each skill links to where I used it. Select one to jump to that project or role."
       />
@@ -21,8 +21,8 @@ export default function SkillsSection() {
             </h3>
             <dl className="divide-y divide-[#D9C9B7]/60">
               {group.skills.map((skill) => (
-                <div key={skill.name} className="py-2.5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-4">
-                  <dt className="font-body text-sm font-semibold text-[#174B79] sm:w-56 shrink-0">
+                <div key={skill.name} className="py-2 flex flex-wrap sm:flex-nowrap items-baseline gap-x-3 gap-y-1 sm:gap-4">
+                  <dt className="font-body text-sm font-semibold text-[#174B79] sm:w-56 sm:shrink-0">
                     {skill.name}
                   </dt>
                   <dd className="flex flex-wrap gap-1.5">

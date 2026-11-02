@@ -5,7 +5,7 @@ import SectionHeader from '../ui/SectionHeader';
 export default function EducationSection() {
   return (
     <section id="education" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
-      <SectionHeader kicker="04 • Education" title="Education & Certifications" />
+      <SectionHeader kicker="05 • Education" title="Education & Certifications" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {educationData.map((edu, idx) => {
@@ -44,7 +44,7 @@ export default function EducationSection() {
         <span className="font-mono text-xs uppercase tracking-wider text-[#174B79] font-bold block mb-3">
           Certifications
         </span>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {certificationsData.map((c) => (
             <li key={c.title} className="card-editorial p-4 text-xs">
               <div className="flex items-center justify-between font-mono text-[11px] text-[#174B79]/80 mb-1">

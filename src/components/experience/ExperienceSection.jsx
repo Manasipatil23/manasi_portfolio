@@ -31,7 +31,7 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <SectionHeader kicker="02 • Experience" title="Work & Research" />
+      <SectionHeader kicker="03 • Experience" title="Work & Research" />
 
       <ol ref={timelineRef} className="relative pl-5 sm:pl-8 border-l-2 border-[#D9C9B7] space-y-7">
         {experienceData.map((exp) => (

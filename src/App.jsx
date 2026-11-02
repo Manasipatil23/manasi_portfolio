@@ -6,7 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/navigation/Navbar';
 import HeroSection from './components/hero/HeroSection';
 import ProjectsSection from './components/projects/ProjectsSection';
+import ResearchSection from './components/research/ResearchSection';
 import ExperienceSection from './components/experience/ExperienceSection';
+import TechMarquee from './components/ui/TechMarquee';
 import SkillsSection from './components/skills/SkillsSection';
 import EducationSection from './components/education/EducationSection';
 import ContactSection from './components/contact/ContactSection';
@@ -93,11 +95,11 @@ export default function App() {
       <main id="main" className={`relative z-10 w-full ${isResumeModalOpen ? 'print:hidden' : ''}`}>
         <HeroSection onOpenResumeModal={openResumeModal} />
 
-        <Divider />
+        <TechMarquee />
 
         <ProjectsSection />
-
-
+        <Divider />
+        <ResearchSection />
         <Divider />
         <ExperienceSection />
         <Divider />
