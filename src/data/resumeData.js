@@ -124,7 +124,7 @@ export const experienceData = [
     id: "business-analyst",
     role: "Business Analyst Intern",
     organisation: "Sadekar Enviro",
-    period: "Apr 2025 – Jun 2025",
+    period: "May 2025 – Jun 2025",
     location: "Thane, India",
     tag: "Environmental Operations & BI",
     bullets: [
