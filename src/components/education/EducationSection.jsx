@@ -49,7 +49,7 @@ export default function EducationSection() {
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {certificationsData.map((c) => (
             <li key={c.title} className="card-editorial p-4 text-xs flex flex-col items-start">
-              <div className="flex items-center justify-between font-mono text-[11px] text-[#174B79]/80 mb-1">
+              <div className="w-full flex items-center justify-between gap-2 font-mono text-[11px] text-[#174B79]/80 mb-1">
                 <span className="font-bold text-[#E9784F]">{c.issuer}</span>
                 <span>{c.period}</span>
               </div>
