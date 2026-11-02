@@ -96,7 +96,7 @@ export default function HeroSection({ onOpenResumeModal }) {
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-[82vh] pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center overflow-hidden"
+      className="relative min-h-[calc(100svh-3.25rem)] pt-28 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center overflow-hidden"
     >
       {/* Editorial 2-Column Balanced Composition */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
