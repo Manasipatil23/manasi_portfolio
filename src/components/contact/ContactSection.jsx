@@ -89,7 +89,7 @@ export default function ContactSection({ onOpenResumeModal }) {
               width="600"
               height="600"
               loading="lazy"
-              className="contact-item w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-5"
+              className="contact-item w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-5"
             />
             <div className="contact-item flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F]" />
