@@ -112,10 +112,19 @@ export default function HeroSection({ onOpenResumeModal }) {
             </span>
           </div>
 
-          {/* Confident, Editorial Name & Headline */}
-          <h1 ref={nameRef} className="font-headline font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#174B79] tracking-tight leading-[1.08] mb-4">
-            Manasi Patil
-          </h1>
+          {/* Portrait + name (portrait sits above the name on phones, beside it from sm up) */}
+          <div ref={nameRef} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 mb-4">
+            <img
+              src="/images/manasi.webp"
+              alt="Manasi Patil"
+              width="400"
+              height="400"
+              className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#F5F0E8] shadow-md shrink-0"
+            />
+            <h1 className="font-headline font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#174B79] tracking-tight leading-[1.08]">
+              Manasi Patil
+            </h1>
+          </div>
 
           <p ref={taglineRef} className="font-headline font-semibold text-xl sm:text-2xl text-[#24699A] leading-snug mb-5 max-w-xl">
             I build the data pipelines and warehouses that analytics runs on, and the ML that sits on top of them.
