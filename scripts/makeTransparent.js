@@ -45,6 +45,15 @@ async function removeWhiteBackground() {
     .toFile(outputPath);
 
   console.log(`Successfully created transparent PNG: ${outputPath}`);
+
+  // Lighter copy served to browsers that support WebP (see HeroSection)
+  const webpPath = outputPath.replace(/\.png$/, '.webp');
+  await sharp(outputPath)
+    .resize({ width: 800 })
+    .webp({ quality: 72, alphaQuality: 85, effort: 6 })
+    .toFile(webpPath);
+
+  console.log(`Successfully created WebP: ${webpPath}`);
 }
 
 removeWhiteBackground().catch(console.error);

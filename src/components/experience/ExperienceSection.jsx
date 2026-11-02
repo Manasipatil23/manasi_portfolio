@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { experienceData } from '../../data/resumeData';
-import { Calendar } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeader from '../ui/SectionHeader';
@@ -71,6 +71,16 @@ export default function ExperienceSection() {
                   </li>
                 ))}
               </ul>
+
+              {exp.caseStudy && (
+                <a
+                  href={`#${exp.caseStudy}`}
+                  className="group inline-flex items-center gap-1.5 mb-4 font-mono text-xs font-semibold text-[#E9784F] hover:text-[#D86438] focus:outline-none focus:ring-2 focus:ring-[#E9784F] rounded"
+                >
+                  Read the case study
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              )}
 
               <div className="pt-3 border-t border-[#D9C9B7] flex flex-wrap items-center gap-1.5">
                 <span className="font-mono text-xs text-[#174B79]/80 mr-1">Tools:</span>

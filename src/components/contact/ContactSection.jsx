@@ -11,10 +11,14 @@ export default function ContactSection({ onOpenResumeModal }) {
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
 
+  // Only confirm when the copy worked (the Clipboard API is missing on insecure origins)
   const handleCopy = () => {
-    navigator.clipboard.writeText(personalInfo.email);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2200);
+    navigator.clipboard?.writeText(personalInfo.email)
+      .then(() => {
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2200);
+      })
+      .catch(() => {});
   };
 
   const scrollToTop = () => {
@@ -81,7 +85,7 @@ export default function ContactSection({ onOpenResumeModal }) {
             <div className="contact-item flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F]" />
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FFAF94] font-bold">
-                Direct Channels • Open to Opportunities
+                Open to Opportunities
               </span>
             </div>
 
@@ -131,10 +135,10 @@ export default function ContactSection({ onOpenResumeModal }) {
             </div>
           </div>
 
-          {/* Right Column (5 cols): Verified Direct Channels */}
+          {/* Right Column (5 cols): Contact details */}
           <div className="lg:col-span-5 flex flex-col gap-3 bg-[#0F3354]/60 p-5 sm:p-6 rounded-2xl border border-[#F5F0E8]/15">
             <span className="contact-item font-mono text-[11px] uppercase tracking-[0.18em] text-[#FFAF94] font-bold block mb-0.5">
-              Contact Coordinates
+              Contact Details
             </span>
 
             {/* Email with copy button */}
@@ -166,7 +170,7 @@ export default function ContactSection({ onOpenResumeModal }) {
               className="contact-item mt-1 w-full py-2.5 rounded-xl bg-[#F5F0E8] hover:bg-white text-[#174B79] font-mono text-xs uppercase tracking-[0.14em] font-bold flex items-center justify-center gap-2 transition-all shadow-sm"
             >
               <Download className="w-3.5 h-3.5 text-[#E9784F]" />
-              <span>View Full Printable Resume</span>
+              <span>View Resume</span>
             </button>
           </div>
 
@@ -176,7 +180,7 @@ export default function ContactSection({ onOpenResumeModal }) {
       {/* Editorial Footer */}
       <footer className="pt-6 border-t border-[#D9C9B7] flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-[#174B79]/80">
         <div>
-          <span className="font-bold text-[#174B79]">Manasi Patil</span> • Computer Engineering Undergraduate (2023 – 2027)
+          <span className="font-bold text-[#174B79]">Manasi Patil</span> • Data Engineering & Analytics • B.Tech Computer Engineering '27
         </div>
 
         <div className="flex items-center gap-5">

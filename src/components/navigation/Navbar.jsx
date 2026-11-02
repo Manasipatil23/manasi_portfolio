@@ -117,7 +117,7 @@ export default function Navbar({ onOpenResumeModal }) {
             <Github className="w-4 h-4" />
           </a>
 
-          {/* Resume Dossier Button */}
+          {/* Resume Button */}
           <button
             onClick={onOpenResumeModal}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#D9C9B7] bg-[#FAF7F2] hover:bg-white text-[#174B79] font-mono text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
@@ -169,7 +169,7 @@ export default function Navbar({ onOpenResumeModal }) {
               }}
               className="font-mono text-xs text-[#174B79] font-semibold"
             >
-              View Resume Dossier
+              View Resume
             </button>
           </div>
         </div>

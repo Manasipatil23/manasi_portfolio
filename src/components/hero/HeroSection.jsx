@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowDown, ArrowUpRight, Linkedin, FileText } from 'lucide-react';
+import { ArrowDown, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -150,25 +150,22 @@ export default function HeroSection({ onOpenResumeModal }) {
               <span>Explore Projects</span>
             </a>
 
-            {/* LinkedIn (Primary Social Link in Coral Accent) */}
+            {/* Email (LinkedIn is already in the header and contact section) */}
             <a
-              href={personalInfo.socials.linkedin.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${personalInfo.email}`}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#E9784F] hover:bg-[#D86438] text-white font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-[#174B79]"
             >
-              <Linkedin className="w-3.5 h-3.5 fill-current" />
-              <span>LinkedIn Profile</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-90" />
+              <Mail className="w-3.5 h-3.5" />
+              <span>Email Me</span>
             </a>
 
-            {/* View Resume Dossier */}
+            {/* Resume */}
             <button
               onClick={onOpenResumeModal}
               className="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-[#D9C9B7] hover:border-[#174B79] bg-[#FAF7F2] hover:bg-white text-[#174B79] font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
             >
               <FileText className="w-3.5 h-3.5 text-[#E9784F]" />
-              <span>Resume Dossier</span>
+              <span>Resume</span>
             </button>
           </div>
 
@@ -194,12 +191,17 @@ export default function HeroSection({ onOpenResumeModal }) {
         <div className="hidden lg:flex lg:col-span-5 relative items-center justify-center min-h-[460px]">
           
           <div ref={roseRef} className="relative w-full max-w-[340px] sm:max-w-[400px] flex flex-col items-center will-change-transform">
-            <img
-              src="/images/coral_rose_transparent.png"
-              alt=""
-              className="w-full h-auto object-contain drop-shadow-md select-none transition-transform duration-500 hover:scale-[1.025]"
-              loading="eager"
-            />
+            <picture>
+              <source srcSet="/images/coral_rose_transparent.webp" type="image/webp" />
+              <img
+                src="/images/coral_rose_transparent.png"
+                alt=""
+                width="896"
+                height="1200"
+                className="w-full h-auto object-contain drop-shadow-md select-none transition-transform duration-500 hover:scale-[1.025]"
+                loading="eager"
+              />
+            </picture>
 
             {/* Subtle Editorial Caption below the botanical art */}
             <div className="mt-2 flex items-center justify-between w-full font-mono text-[11px] text-[#174B79]/80 px-4">

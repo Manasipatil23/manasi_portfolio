@@ -61,11 +61,19 @@ export default function App() {
       {/* Subtle organic paper texture overlay across page */}
       <div className="fixed inset-0 pointer-events-none opacity-30 paper-texture z-0 print:hidden" />
 
+      {/* Keyboard users can jump straight past the header */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#174B79] focus:text-white focus:font-mono focus:text-xs print:hidden"
+      >
+        Skip to content
+      </a>
+
       {/* Glassmorphism Navbar */}
       <Navbar onOpenResumeModal={openResumeModal} />
 
       {/* Main Editorial Content Flow */}
-      <main className={`relative z-10 w-full ${isResumeModalOpen ? 'print:hidden' : ''}`}>
+      <main id="main" className={`relative z-10 w-full ${isResumeModalOpen ? 'print:hidden' : ''}`}>
         <HeroSection onOpenResumeModal={openResumeModal} />
 
         <Divider />

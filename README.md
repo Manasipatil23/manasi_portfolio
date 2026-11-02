@@ -33,6 +33,8 @@ npm run build    # production build into dist/
 npm run preview  # serve the production build
 ```
 
-`scripts/makeTransparent.js` regenerates `public/images/coral_rose_transparent.png` from the source image in `design-assets/` (needs the `sharp` dev dependency).
+`scripts/makeTransparent.js` regenerates `public/images/coral_rose_transparent.png` (and its `.webp` copy) from the source image in `design-assets/` (needs the `sharp` dev dependency).
+
+`scripts/makeOgImage.js` rebuilds `public/og-cover.png`, the 1200×630 link-preview image.
 
 `_archive/` holds retired components that are not part of the site; it is git-ignored and safe to delete.

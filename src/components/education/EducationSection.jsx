@@ -35,11 +35,6 @@ export default function EducationSection() {
                 </div>
               </div>
 
-              <div className="pt-3 mt-3 border-t border-[#D9C9B7] flex flex-wrap gap-1.5 text-xs font-mono text-[#174B79]">
-                {edu.highlights.map((h) => (
-                  <span key={h} className="px-2 py-0.5 rounded bg-[#F5F0E8] border border-[#D9C9B7]">{h}</span>
-                ))}
-              </div>
             </div>
           );
         })}

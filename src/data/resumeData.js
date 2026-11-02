@@ -51,8 +51,7 @@ export const educationData = [
     scoreLabel: "CGPA",
     scoreValue: 9.33,
     scoreMax: 10.0,
-    period: "2023 – 2027",
-    highlights: ["Algorithms & Data Structures", "Database Architecture", "System Design"]
+    period: "2023 – 2027"
   },
   {
     institution: "K J Somaiya College of Engineering",
@@ -61,8 +60,7 @@ export const educationData = [
     scoreLabel: "CGPA",
     scoreValue: 10.0,
     scoreMax: 10.0,
-    period: "Enrolled Specialization",
-    highlights: ["Advanced Statistical Modeling", "Deep Learning Architectures", "Geospatial Analysis"]
+    period: "Enrolled Specialization"
   }
 ];
 
@@ -141,6 +139,8 @@ export const experienceData = [
     period: "Dec 2025 – Aug 2026", // Updated: ended at August
     location: "Remote",
     tag: "Remote Sensing & Geospatial ML",
+    // Anchor of the matching project case study, linked from the timeline
+    caseStudy: "project-geospatial-research",
     bullets: [
       "Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.",
       "Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.",
