@@ -99,6 +99,7 @@ export const experienceData = [
     tag: "Remote Sensing & Geospatial ML",
     // Anchor of the matching project case study, linked from the timeline
     caseStudy: "research",
+    certificate: { title: "Internship completion certificate, KJSSE with UTM Malaysia", image: "/certificates/ml-internship-utm.webp" },
     // Shown on the site instead of the bullets, which the case study already covers (the resume keeps the bullets)
     brief:
       "In a team of two, built a Python pipeline that turns multi-band satellite imagery into NDWI patches, then trained and compared five deep-learning models that map malaria-risk zones. Findings presented at two institutions.",
@@ -213,7 +214,9 @@ export const certificationsData = [
     title: "Databases and SQL for Data Science with Python",
     issuer: "IBM",
     period: "Certified",
-    category: "Databases & Data Science"
+    category: "Databases & Data Science",
+    image: "/certificates/ibm-sql.webp",
+    verifyUrl: "https://coursera.org/verify/ZUE0LSZ3FLVS"
   },
   {
     title: "Google Cybersecurity Professional Certificate",
@@ -224,14 +227,17 @@ export const certificationsData = [
   {
     title: "Google AI Essentials Certificate",
     issuer: "Google",
-    period: "Certified",
-    category: "Artificial Intelligence"
+    period: "Jun 2026",
+    category: "Artificial Intelligence",
+    image: "/certificates/google-ai-essentials.webp",
+    verifyUrl: "https://coursera.org/verify/specialization/JGWW0OUNKRR7"
   },
   {
     title: "Deloitte Data Analytics Job Simulation",
     issuer: "Forage",
     period: "June 2025",
-    category: "Business Analytics"
+    category: "Business Analytics",
+    image: "/certificates/deloitte-data-analytics.webp"
   }
 ];
 

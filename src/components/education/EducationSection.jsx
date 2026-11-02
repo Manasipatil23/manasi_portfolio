@@ -2,6 +2,7 @@ import React from 'react';
 import { educationData, certificationsData } from '../../data/resumeData';
 import SectionHeader from '../ui/SectionHeader';
 import CountUp from '../ui/CountUp';
+import CertificatePreview from '../ui/CertificatePreview';
 
 export default function EducationSection() {
   return (
@@ -47,12 +48,13 @@ export default function EducationSection() {
         </span>
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {certificationsData.map((c) => (
-            <li key={c.title} className="card-editorial p-4 text-xs">
+            <li key={c.title} className="card-editorial p-4 text-xs flex flex-col items-start">
               <div className="flex items-center justify-between font-mono text-[11px] text-[#174B79]/80 mb-1">
                 <span className="font-bold text-[#E9784F]">{c.issuer}</span>
                 <span>{c.period}</span>
               </div>
               <h4 className="font-headline font-bold text-sm text-[#174B79] leading-snug">{c.title}</h4>
+              {c.image && <CertificatePreview certificate={c} className="mt-2.5" />}
             </li>
           ))}
         </ul>

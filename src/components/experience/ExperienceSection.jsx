@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { experienceData } from '../../data/resumeData';
+import CertificatePreview from '../ui/CertificatePreview';
 import { Calendar, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -76,14 +77,19 @@ export default function ExperienceSection() {
                 </ul>
               )}
 
+              {(exp.caseStudy || exp.certificate) && (
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-4">
               {exp.caseStudy && (
                 <a
                   href={`#${exp.caseStudy}`}
-                  className="group inline-flex items-center gap-1.5 mb-4 font-mono text-xs font-semibold text-[#E9784F] hover:text-[#D86438] focus:outline-none focus:ring-2 focus:ring-[#E9784F] rounded"
+                  className="group inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[#E9784F] hover:text-[#D86438] focus:outline-none focus:ring-2 focus:ring-[#E9784F] rounded"
                 >
                   {exp.caseStudyLabel || 'Read the case study'}
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </a>
+              )}
+              {exp.certificate && <CertificatePreview certificate={exp.certificate} />}
+                </div>
               )}
 
               <div className="pt-3 border-t border-[#D9C9B7] flex flex-wrap items-center gap-1.5">
