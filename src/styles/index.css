@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-ivory: #F5F0E8;
+    --primary-blue: #174B79;
+    --secondary-blue: #24699A;
+    --accent-coral: #E9784F;
+    --soft-beige: #D9C9B7;
+  }
+
+  html {
+    background-color: #F5F0E8;
+    color: #174B79;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F5F0E8;
+    color: #174B79;
+    overflow-x: hidden;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Lenis recommended CSS */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+}
+
+/* Editorial Surfaces */
+.card-editorial {
+  background: #FAF7F2;
+  border: 1px solid #D9C9B7;
+  border-radius: 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-editorial:hover {
+  border-color: #174B79;
+  box-shadow: 0 12px 30px -10px rgba(23, 75, 121, 0.08);
+}
+
+.card-blue {
+  background-color: #174B79;
+  color: #F5F0E8;
+  border-radius: 1.25rem;
+}
+
+/* Subtle Crumpled / Paper Grain Texture */
+.paper-texture {
+  background-image: 
+    radial-gradient(rgba(23, 75, 121, 0.035) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Editorial 1px rules */
+.rule-beige {
+  height: 1px;
+  background-color: #D9C9B7;
+  width: 100%;
+}
+
+/* Architecture flow: dot travels down (mobile) or right (desktop) along each connector */
+.flow-dot {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  animation: flow-down 1.6s ease-in-out infinite;
+}
+
+@keyframes flow-down {
+  from { top: 0; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  to { top: 100%; opacity: 0; }
+}
+
+@media (min-width: 1024px) {
+  .flow-dot {
+    left: 0;
+    top: 50%;
+    animation-name: flow-right;
+  }
+
+  @keyframes flow-right {
+    from { left: 0; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    to { left: 100%; opacity: 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-dot { display: none; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9C9B7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #174B79;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
