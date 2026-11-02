@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Manasi Patil — Resume</title>
+<style>
+  @font-face { font-family: 'CMU'; src: url('fonts/cmunrm.woff') format('woff'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'CMU'; src: url('fonts/cmunbx.woff') format('woff'); font-weight: bold; font-style: normal; }
+  @font-face { font-family: 'CMU'; src: url('fonts/cmunti.woff') format('woff'); font-weight: normal; font-style: italic; }
+  @font-face { font-family: 'CMU'; src: url('fonts/cmunbi.woff') format('woff'); font-weight: bold; font-style: italic; }
+
+  @page { size: letter; margin: 0.42in 0.5in 0.36in 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'CMU', serif; font-size: 10.2pt; line-height: 1.17; color: #000; }
+  a { color: inherit; text-decoration: none; }
+
+  header { text-align: center; margin-bottom: 7pt; }
+  header h1 { font-size: 25pt; font-weight: bold; line-height: 1.05; margin-bottom: 2pt; }
+  header p { font-size: 9.6pt; line-height: 1.3; }
+
+  h2 { font-variant: small-caps; font-weight: normal; font-size: 12.6pt; letter-spacing: 0.2pt;
+       border-bottom: 0.6pt solid #000; padding-bottom: 0.5pt; margin: 6pt 0 3.5pt; }
+
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; padding-right: 1.5pt; }
+  .entry { margin: 0 0 3pt 10pt; }
+  .entry .sub { font-style: italic; font-size: 9.6pt; }
+  .entry .title { font-weight: bold; }
+  .entry .date { white-space: nowrap; }
+
+  ul.dash { list-style: none; margin: 1pt 0 0 0; font-size: 9.3pt; }
+  ul.dash li { position: relative; padding-left: 9pt; margin-bottom: 0.5pt; }
+  ul.dash li::before { content: "–"; position: absolute; left: 0; }
+
+  .summary, .skills { margin-left: 10pt; font-size: 9.4pt; }
+  .skills div { margin-bottom: 0.5pt; }
+
+  ul.bullets { margin-left: 10pt; font-size: 9.4pt; list-style: none; }
+  ul.bullets li { position: relative; padding-left: 9pt; }
+  ul.bullets li::before { content: "•"; position: absolute; left: 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Manasi Patil</h1>
+  <p>Thane, Maharashtra, India | <a href="mailto:manasipatil232005@gmail.com">manasipatil232005@gmail.com</a></p>
+  <p>
+    <a href="https://www.linkedin.com/in/manasi-patil-3a839b307/">LinkedIn</a> |
+    <a href="https://github.com/Manasipatil23">GitHub</a> |
+    <a href="https://leetcode.com/u/manasipatil23/">LeetCode</a>
+  </p>
+</header>
+
+<h2>Summary</h2>
+<p class="summary">
+  Computer Engineering undergraduate (CGPA 9.33/10) focused on data engineering and analytics, with hands-on experience
+  building a SQL Server data warehouse, Python data pipelines for ML research, and analytics services. Skilled in Python,
+  SQL, and Power BI. Seeking a 6-month internship and full-time roles from July 2027.
+</p>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span class="title">K J Somaiya College of Engineering</span><span>Mumbai, India</span></div>
+  <div class="row sub"><span>B.Tech in Computer Engineering | CGPA: 9.33/10</span><span class="date">2023 – 2027</span></div>
+  <div class="row"><span class="title">Honours in Data Science &amp; Analytics</span></div>
+  <div class="row sub"><span>K J Somaiya College of Engineering | CGPA: 10/10</span></div>
+</div>
+
+<h2>Technical Skills</h2>
+<div class="skills">
+  <div><b>Languages &amp; Databases:</b> Python, SQL (MySQL, PostgreSQL, SQL Server), MongoDB</div>
+  <div><b>Data &amp; Analytics:</b> Pandas, NumPy, Matplotlib, Seaborn, Power BI, Advanced Excel, EDA, Statistical Analysis, ETL, Data Warehousing</div>
+  <div><b>AI/ML:</b> Scikit-learn, PyTorch, TensorFlow, Deep Learning, Computer Vision, NLP, LLMs, LangChain, Hugging Face</div>
+  <div><b>Backend &amp; Cloud:</b> FastAPI, Node.js, Express.js, React.js, REST APIs, Docker, AWS (EC2, S3), Git</div>
+  <div><b>Cybersecurity:</b> Security Frameworks (NIST), Risk &amp; Vulnerability Assessment, Network Security, Linux, SIEM &amp; Incident Response, Python for Security Automation</div>
+</div>
+
+<h2>Experience</h2>
+<div class="entry">
+  <div class="row"><span class="title">Machine Learning Research Intern</span><span class="date">Dec 2025 – Aug 2026</span></div>
+  <div class="row sub"><span>K J Somaiya College of Engineering (with Universiti Teknologi Malaysia)</span><span>Remote</span></div>
+  <ul class="dash">
+    <li>Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.</li>
+    <li>Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.</li>
+    <li>Developed a malaria risk prediction model with over 90% accuracy using geospatial feature engineering, delivering heatmaps of high-risk zones for public health decisions.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="title">Business Analyst Intern</span><span class="date">Apr 2025 – Jun 2025</span></div>
+  <div class="row sub"><span>Sadekar Enviro</span><span>Thane, India</span></div>
+  <ul class="dash">
+    <li>Analyzed operational and environmental datasets in Python, SQL, and Excel to identify process inefficiencies and presented actionable insights to senior management.</li>
+    <li>Gathered requirements from cross-functional teams and automated recurring reports and visualizations, replacing manual data compilation.</li>
+  </ul>
+</div>
+
+<h2>Projects</h2>
+<div class="entry">
+  <div class="row"><span><span class="title">SQL Data Warehouse — Medallion Architecture</span> | <i>SQL Server, T-SQL, ETL, Data Modeling, Git</i></span><span class="date">2026</span></div>
+  <ul class="dash">
+    <li>Designed and built an end-to-end data warehouse on a three-layer architecture (Bronze, Silver, Gold), consolidating CRM and ERP source data into one analytics-ready model.</li>
+    <li>Developed SQL ETL pipelines using stored procedures for data ingestion, cleansing, standardization, and transformation between layers.</li>
+    <li>Modeled the Gold layer as a star schema (customer and product dimensions, sales fact table) for business reporting, with a data catalog and data-flow documentation, version-controlled in Git.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span><span class="title">Campus Connect — AI-Powered Placement Analytics Platform</span> | <i>React, FastAPI, MongoDB, LLM</i></span><span class="date">2026</span></div>
+  <ul class="dash">
+    <li>Designed KPI dashboards and a Placement Health Score prediction model (Scikit-learn) giving placement teams real-time visibility into funnel performance, reducing manual tracking effort.</li>
+    <li>Built an ML-driven ATS resume-scoring engine and automated eligibility filtering system, cutting manual shortlisting time and standardizing candidate evaluation across four stakeholder roles.</li>
+    <li>Developed a Python/FastAPI analytics service layer exposing role-based insights via JWT-secured REST APIs, applying EDA and model evaluation (F1, AUC) to iteratively improve prediction accuracy.</li>
+  </ul>
+</div>
+
+<h2>Certifications &amp; Achievements</h2>
+<ul class="bullets">
+  <li>Databases and SQL for Data Science with Python — IBM</li>
+  <li>Google Cybersecurity Professional Certificate (in progress)</li>
+  <li>Google AI Essentials Certificate</li>
+  <li>Deloitte Data Analytics Job Simulation — Forage (June 2025)</li>
+</ul>
+
+</body>
+</html>

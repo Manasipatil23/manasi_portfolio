@@ -16,8 +16,8 @@ export const personalInfo = {
   },
   location: "Thane, Maharashtra, India",
   email: "manasipatil232005@gmail.com",
-  // Drop a PDF into /public and set e.g. "/Manasi_Patil_Resume.pdf" to enable the download button
-  resumePdfUrl: "",
+  // PDF in /public (rebuilt from resume/resume.html); enables the Download PDF button
+  resumePdfUrl: "/Manasi_Patil_Resume.pdf",
   socials: {
     linkedin: {
       name: "LinkedIn",

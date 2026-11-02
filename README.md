@@ -35,6 +35,17 @@ npm run preview  # serve the production build
 
 `scripts/makeTransparent.js` regenerates `public/images/coral_rose_transparent.png` (and its `.webp` copy) from the source image in `design-assets/` (needs the `sharp` dev dependency).
 
+### Resume PDF
+
+`resume/resume.html` is the source of the one-page resume (Computer Modern fonts in `resume/fonts/`). After editing it, rebuild the PDF the site serves:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+  --print-to-pdf=public/Manasi_Patil_Resume.pdf "file://$PWD/resume/resume.html"
+```
+
+Check that it is still one page before committing.
+
 `scripts/makeOgImage.js` rebuilds `public/og-cover.png`, the 1200×630 link-preview image.
 
 `_archive/` holds retired components that are not part of the site; it is git-ignored and safe to delete.
