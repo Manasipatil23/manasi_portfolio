@@ -71,24 +71,31 @@ export default function SplitLetters({ text, as: Tag = 'span', className = '', v
 
     const chars = [...el.querySelectorAll('.split-char')];
 
-    // Lock each letter's width so scrambled glyphs don't make the line jitter
-    if (variant === 'scramble') {
+    // Scramble: lock each letter's width while random glyphs show, so the line doesn't jitter.
+    // Measured at every start (not on mount) so it uses the loaded web font, then released.
+    const unlock = () => chars.forEach((c) => { c.textContent = c.dataset.char; c.style.width = ''; c.style.opacity = ''; });
+    const lock = () => {
+      unlock();
       chars.forEach((c) => {
         c.style.width = `${c.getBoundingClientRect().width}px`;
         c.style.textAlign = 'center';
       });
-    }
+    };
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ paused: true });
+      const tl = gsap.timeline({ paused: true, onComplete: variant === 'scramble' ? unlock : undefined });
       VARIANTS[variant](tl, chars);
+      const play = () => {
+        if (variant === 'scramble') lock();
+        tl.restart();
+      };
 
       ScrollTrigger.create({
         trigger: el,
         start: 'top 92%',
         end: 'bottom 8%',
-        onEnter: () => tl.restart(),
-        onEnterBack: () => tl.restart(),
+        onEnter: play,
+        onEnterBack: play,
         // Hide again once fully off screen so the next entry starts from scratch
         onLeave: () => tl.pause(0),
         onLeaveBack: () => tl.pause(0),
@@ -97,7 +104,7 @@ export default function SplitLetters({ text, as: Tag = 'span', className = '', v
 
     return () => {
       ctx.revert();
-      chars.forEach((c) => { c.textContent = c.dataset.char; c.style.opacity = ''; });
+      unlock();
     };
   }, [text, variant]);
 
