@@ -247,41 +247,41 @@ export const skillEvidence = [
   {
     group: "Data Engineering",
     skills: [
-      { name: "SQL / T-SQL", where: ["project-data-warehouse", "exp-business-analyst", "education"] },
-      { name: "SQL Server", where: ["project-data-warehouse"] },
-      { name: "ETL (stored procedures)", where: ["project-data-warehouse"] },
-      { name: "Dimensional modeling (star schema)", where: ["project-data-warehouse"] },
-      { name: "Medallion architecture", where: ["project-data-warehouse"] },
-      { name: "Python data pipelines", where: ["research"] },
-      { name: "MongoDB", where: ["project-campus-connect"] },
-      { name: "Git", where: ["project-data-warehouse"] }
+      { name: "SQL / T-SQL", short: "SQL / T-SQL", where: ["project-data-warehouse", "exp-business-analyst", "education"] },
+      { name: "SQL Server", short: "SQL Server", where: ["project-data-warehouse"] },
+      { name: "ETL (stored procedures)", short: "ETL", where: ["project-data-warehouse"] },
+      { name: "Dimensional modeling (star schema)", short: "Star schema", where: ["project-data-warehouse"] },
+      { name: "Medallion architecture", short: "Medallion", where: ["project-data-warehouse"] },
+      { name: "Python data pipelines", short: "Python pipelines", where: ["research"] },
+      { name: "MongoDB", short: "MongoDB", where: ["project-campus-connect"] },
+      { name: "Git", short: "Git", where: ["project-data-warehouse"] }
     ]
   },
   {
     group: "Analytics",
     skills: [
-      { name: "Power BI dashboards", where: ["exp-business-analyst"] },
-      { name: "Python analysis", where: ["exp-business-analyst"] },
-      { name: "Excel & automated reporting", where: ["exp-business-analyst"] },
-      { name: "KPI dashboards", where: ["project-campus-connect"] },
-      { name: "EDA", where: ["project-campus-connect"] },
-      { name: "Requirements gathering", where: ["exp-business-analyst"] }
+      { name: "Power BI dashboards", short: "Power BI", where: ["exp-business-analyst"] },
+      { name: "Python analysis", short: "Python analysis", where: ["exp-business-analyst"] },
+      { name: "Excel & automated reporting", short: "Excel reporting", where: ["exp-business-analyst"] },
+      { name: "KPI dashboards", short: "KPI dashboards", where: ["project-campus-connect"] },
+      { name: "EDA", short: "EDA", where: ["project-campus-connect"] },
+      { name: "Requirements gathering", short: "Requirements", where: ["exp-business-analyst"] }
     ]
   },
   {
     group: "Machine Learning",
     skills: [
-      { name: "Scikit-learn", where: ["project-campus-connect"] },
-      { name: "Deep learning (DeepLabV3+, ResNet-50, VGG19)", where: ["research"] },
-      { name: "Model evaluation (precision, recall, F1)", where: ["research", "project-campus-connect"] },
-      { name: "Satellite imagery & NDWI", where: ["research"] }
+      { name: "Scikit-learn", short: "Scikit-learn", where: ["project-campus-connect"] },
+      { name: "Deep learning (DeepLabV3+, ResNet-50, VGG19)", short: "Deep learning", where: ["research"] },
+      { name: "Model evaluation (precision, recall, F1)", short: "Model evaluation", where: ["research", "project-campus-connect"] },
+      { name: "Satellite imagery & NDWI", short: "Satellite / NDWI", where: ["research"] }
     ]
   },
   {
     group: "Backend",
     skills: [
-      { name: "FastAPI & REST APIs (JWT)", where: ["project-campus-connect"] },
-      { name: "React", where: ["project-campus-connect"] }
+      { name: "FastAPI & REST APIs (JWT)", short: "FastAPI + JWT", where: ["project-campus-connect"] },
+      { name: "React", short: "React", where: ["project-campus-connect"] }
     ]
   }
 ];
@@ -293,6 +293,15 @@ export const evidenceLabels = {
   research: "ML Research",
   "exp-business-analyst": "BA Internship",
   education: "IBM SQL Certificate"
+};
+
+// Second line under each source in the Skills lineage graph
+export const evidenceSubtitles = {
+  "project-data-warehouse": "SQL Server project",
+  "project-campus-connect": "FastAPI + ML platform",
+  research: "UTM internship",
+  "exp-business-analyst": "Sadekar Enviro",
+  education: "Coursera certificate"
 };
 
 // Listed without a linked project (yet)

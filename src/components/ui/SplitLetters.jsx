@@ -38,6 +38,18 @@ const VARIANTS = {
       { opacity: 0 },
       { opacity: 1, duration: 0.01, stagger: 0.035, ease: 'none' }),
 
+  // Letters fly in from scattered points and snap into place, like nodes being connected
+  connect: (tl, chars) =>
+    tl.fromTo(chars,
+      {
+        opacity: 0,
+        x: () => gsap.utils.random(-70, 70),
+        y: () => gsap.utils.random(-50, 50),
+        rotate: () => gsap.utils.random(-40, 40),
+        scale: 0.4,
+      },
+      { opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, duration: 0.8, ease: 'expo.out', stagger: { each: 0.025, from: 'random' } }),
+
   // Random characters "decode" into the real letters, left to right
   scramble: (tl, chars) => {
     const finals = chars.map((c) => c.dataset.char);
@@ -62,7 +74,7 @@ const VARIANTS = {
 
 // Text whose letters animate in every time it scrolls into view (down or back up).
 // Screen readers get the plain text; the per-letter spans are hidden from them.
-export default function SplitLetters({ text, as: Tag = 'span', className = '', variant = 'rise' }) {
+export default function SplitLetters({ text, as: Tag = 'span', className = '', variant = 'rise', underline = false }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -85,6 +97,9 @@ export default function SplitLetters({ text, as: Tag = 'span', className = '', v
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ paused: true, onComplete: variant === 'scramble' ? unlock : undefined });
       VARIANTS[variant](tl, chars);
+      // Optional coral underline draws in under the last word once the letters land
+      const line = el.querySelector('.split-underline');
+      if (line) tl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.inOut' }, '-=0.25');
       const play = () => {
         if (variant === 'scramble') lock();
         tl.restart();
@@ -106,7 +121,7 @@ export default function SplitLetters({ text, as: Tag = 'span', className = '', v
       ctx.revert();
       unlock();
     };
-  }, [text, variant]);
+  }, [text, variant, underline]);
 
   // Words stay unbroken so lines only wrap between words
   const words = text.split(' ');
@@ -115,12 +130,15 @@ export default function SplitLetters({ text, as: Tag = 'span', className = '', v
     <Tag ref={ref} className={className} aria-label={text} style={{ perspective: '600px' }}>
       {words.map((word, w) => (
         <React.Fragment key={w}>
-          <span className="inline-block whitespace-nowrap" aria-hidden="true">
+          <span className="relative inline-block whitespace-nowrap" aria-hidden="true">
             {[...word].map((ch, i) => (
               <span key={i} data-char={ch} className="split-char inline-block will-change-transform" style={{ transformOrigin: '50% 100%' }}>
                 {ch}
               </span>
             ))}
+            {underline && w === words.length - 1 && (
+              <span className="split-underline absolute left-0 right-0 -bottom-1 h-[3px] rounded-full bg-[#E9784F] origin-left" />
+            )}
           </span>
           {w < words.length - 1 && ' '}
         </React.Fragment>

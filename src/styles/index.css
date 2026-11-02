@@ -202,3 +202,19 @@ summary::-webkit-details-marker {
 @media (prefers-reduced-motion: reduce) {
   .typewriter-caret { display: none; }
 }
+
+/* Skills lineage graph: coral dashes flow along the highlighted links */
+.lineage-on {
+  stroke-dasharray: 4 4;
+  animation: lineage-flow 0.8s linear infinite;
+}
+@keyframes lineage-flow {
+  to { stroke-dashoffset: -16; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lineage-on { animation: none; }
+}
+
+/* Swipeable rows without a visible scrollbar */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
