@@ -10,6 +10,7 @@ export default function SkillsSection() {
       <SectionHeader
         kicker="04 • Skills"
         title="Skills, with Evidence"
+        titleVariant="wave"
         intro="Each skill links to where I used it. Select one to jump to that project or role."
       />
 

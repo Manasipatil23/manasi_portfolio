@@ -170,6 +170,7 @@ export default function ProjectsSection() {
       <SectionHeader
         kicker="01 • Selected Work"
         title="Projects"
+        titleVariant="rise"
         intro="A SQL warehouse built layer by layer, and an analytics platform with ML on top."
       />
 

@@ -183,3 +183,22 @@
 summary::-webkit-details-marker {
   display: none;
 }
+
+/* Typewriter heading cursor */
+.typewriter-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  margin-left: 0.08em;
+  vertical-align: -0.08em;
+  background: #E9784F;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret { display: none; }
+}

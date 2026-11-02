@@ -2,7 +2,7 @@ import React from 'react';
 import SplitLetters from './SplitLetters';
 
 // Kicker line + heading + optional intro, shared by every main section
-export default function SectionHeader({ kicker, title, intro, aside }) {
+export default function SectionHeader({ kicker, title, intro, aside, titleVariant }) {
   return (
     <div className="mb-10">
       <div className="flex items-center gap-2.5 mb-3">
@@ -17,6 +17,7 @@ export default function SectionHeader({ kicker, title, intro, aside }) {
           <SplitLetters
             as="h2"
             text={title}
+            variant={titleVariant}
             className="font-headline font-bold text-3xl sm:text-4xl text-[#174B79] tracking-tight"
           />
           {intro && (

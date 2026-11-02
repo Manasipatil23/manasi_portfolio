@@ -5,7 +5,7 @@ import SectionHeader from '../ui/SectionHeader';
 export default function EducationSection() {
   return (
     <section id="education" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
-      <SectionHeader kicker="05 • Education" title="Education & Certifications" />
+      <SectionHeader kicker="05 • Education" title="Education & Certifications" titleVariant="blur" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {educationData.map((edu, idx) => {

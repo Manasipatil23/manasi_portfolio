@@ -101,6 +101,7 @@ export default function ContactSection({ onOpenResumeModal }) {
             <SplitLetters
               as="h2"
               text="Hiring for data engineering or analytics roles? Let's talk."
+              variant="typewriter"
               className="font-headline font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-3"
             />
 

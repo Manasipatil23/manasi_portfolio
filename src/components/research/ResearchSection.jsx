@@ -13,6 +13,7 @@ export default function ResearchSection() {
       <SectionHeader
         kicker="02 • ML Research"
         title="Mapping malaria risk from space"
+        titleVariant="scramble"
         intro={`${internship.role}, ${internship.organisation} ${internship.affiliation} · ${internship.period} · ${researchData.team}. Satellite imagery in, risk maps out.`}
       />
 
