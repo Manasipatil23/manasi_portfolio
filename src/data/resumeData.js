@@ -316,7 +316,7 @@ export const researchData = {
   // Approximate values (≈) are as stated on the slides
   models: [
     { name: "MobileNetV2 + CBAM", kind: "Hybrid attention classifier", accuracy: 0.98, precision: 0.98, recall: 0.98, f1: 0.98, note: "200 test patches" },
-    { name: "VGG19", kind: "Transfer learning", accuracy: 0.91, precision: 0.96, recall: 0.84, f1: null, approx: ["accuracy"] },
+    { name: "VGG19", kind: "Transfer learning", accuracy: 0.9082, precision: 0.958, recall: 0.8443, f1: 0.8975 },
     { name: "ResNet-50", kind: "Residual network", accuracy: 0.902, precision: 0.9, recall: 0.9, f1: 0.9 },
     { name: "Inception-style CNN", kind: "Multi-scale filters", accuracy: 0.9, precision: 0.92, recall: 0.85, f1: 0.9, approx: ["accuracy", "f1"] },
     { name: "DeepLabV3+", kind: "Pixel-wise segmentation", accuracy: 0.8247, precision: 0.8052, recall: 0.9724, f1: 0.881, note: "23.1M test pixels" }
