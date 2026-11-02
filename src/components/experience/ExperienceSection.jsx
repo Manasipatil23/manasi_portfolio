@@ -81,7 +81,7 @@ export default function ExperienceSection() {
                   href={`#${exp.caseStudy}`}
                   className="group inline-flex items-center gap-1.5 mb-4 font-mono text-xs font-semibold text-[#E9784F] hover:text-[#D86438] focus:outline-none focus:ring-2 focus:ring-[#E9784F] rounded"
                 >
-                  Read the case study
+                  {exp.caseStudyLabel || 'Read the case study'}
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </a>
               )}

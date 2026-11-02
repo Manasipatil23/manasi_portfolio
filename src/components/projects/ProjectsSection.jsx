@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeader from '../ui/SectionHeader';
 import ArchitectureFlow from './ArchitectureFlow';
+import GoldExplorer from './GoldExplorer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,6 +80,8 @@ function CaseStudy({ project, index }) {
       <div className="mb-6">
         <ArchitectureFlow stages={project.architecture} label="How the data flows" />
       </div>
+
+      {project.id === 'data-warehouse' && <GoldExplorer />}
 
       {/* What I built (design choices fold away to keep the card short) */}
       <div className="mb-6">

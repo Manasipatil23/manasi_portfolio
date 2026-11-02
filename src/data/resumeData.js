@@ -131,6 +131,8 @@ export const experienceData = [
       "Gathered requirements from cross-functional teams and automated recurring reports and visualizations, replacing manual data compilation.",
       "Built Power BI dashboards to support business decisions."
     ],
+    caseStudy: "gold-explorer",
+    caseStudyLabel: "See a dashboard demo",
     technologies: ["Power BI", "Python", "SQL", "Advanced Excel", "Process Inefficiency Analysis", "Automated Reporting"]
   }
 ];
@@ -323,4 +325,36 @@ export const researchData = {
     { src: "/research/deeplab-report.webp", title: "DeepLabV3+ evaluation", caption: "Pixel-wise metrics and confusion matrix over 23.1M test pixels." },
     { src: "/research/deeplab-curves.webp", title: "DeepLabV3+ training curves", caption: "Accuracy and loss across 30 epochs for training and validation." }
   ]
+};
+
+// Gold-layer explorer under the warehouse case study (3D cube + report page).
+// SAMPLE NUMBERS: shaped like the warehouse's sales data, not real query output.
+// Replace `sales` with the result of `query` run on the gold views and set sample to false.
+const SAMPLE_YEAR = [0.55, 0.85, 1.25, 0.35];     // 2014 is a partial year
+const SAMPLE_CATEGORY = [1.0, 0.09, 0.14, 0.32];
+const SAMPLE_COUNTRY = [1.0, 0.92, 0.38, 0.33];
+export const goldCube = {
+  sample: true,
+  unit: "$K",
+  axes: [
+    { name: "Year", values: ["2011", "2012", "2013", "2014"] },
+    { name: "Category", values: ["Bikes", "Components", "Clothing", "Accessories"] },
+    { name: "Country", values: ["USA", "Australia", "UK", "Germany"] }
+  ],
+  // sales[year][category][country], in $K
+  sales: SAMPLE_YEAR.map((y, yi) =>
+    SAMPLE_CATEGORY.map((c, ci) =>
+      SAMPLE_COUNTRY.map((k, ki) =>
+        Math.round(1400 * y * c * k * (0.85 + ((yi * 7 + ci * 5 + ki * 3) % 6) * 0.06))
+      )
+    )
+  ),
+  query: `SELECT YEAR(f.order_date)  AS order_year,
+       p.category,
+       c.country,
+       SUM(f.sales_amount)    AS sales
+FROM gold.fact_sales f
+JOIN gold.dim_products  p ON p.product_key  = f.product_key
+JOIN gold.dim_customers c ON c.customer_key = f.customer_key
+GROUP BY YEAR(f.order_date), p.category, c.country;`
 };
