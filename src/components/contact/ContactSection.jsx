@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Mail, MapPin, Linkedin, Github, Code2, Copy, Check, Download, ArrowUpRight, ArrowUp } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
+import SplitLetters from '../ui/SplitLetters';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -97,9 +98,11 @@ export default function ContactSection({ onOpenResumeModal }) {
               </span>
             </div>
 
-            <h2 className="contact-item font-headline font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-3">
-              Hiring for data engineering or analytics roles? Let's talk.
-            </h2>
+            <SplitLetters
+              as="h2"
+              text="Hiring for data engineering or analytics roles? Let's talk."
+              className="font-headline font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-3"
+            />
 
             <p className="contact-item font-body text-xs sm:text-sm text-[#F5F0E8]/80 leading-relaxed max-w-lg mb-6">
               I'm looking for a 6-month internship now and full-time roles from July 2027, preferably in Mumbai. Data engineering first, then data analytics and ML.
