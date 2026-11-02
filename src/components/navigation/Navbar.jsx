@@ -16,31 +16,43 @@ export default function Navbar({ onOpenResumeModal }) {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-
-      // At the very bottom the short Contact section never reaches the probe line
-      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-      if (atBottom) {
-        setActiveSection('contact');
-        return;
-      }
-
-      const sections = ['home', 'projects', 'experience', 'skills', 'education', 'contact'];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 220 && rect.bottom >= 220) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Highlight the section crossing a thin band ~25% down the viewport
+  useEffect(() => {
+    let footerVisible = false;
+    let bandSection = 'home';
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) bandSection = entry.target.id;
+        });
+        if (!footerVisible) setActiveSection(bandSection);
+      },
+      { rootMargin: '-25% 0px -74% 0px' }
+    );
+
+    // The short Contact section never reaches the band, so the footer coming into view selects it
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      footerVisible = entry.isIntersecting;
+      setActiveSection(footerVisible ? 'contact' : bandSection);
+    });
+
+    ['home', ...navLinks.map((l) => l.id)].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+    const footer = document.querySelector('footer');
+    if (footer) footerObserver.observe(footer);
+
+    return () => {
+      sectionObserver.disconnect();
+      footerObserver.disconnect();
+    };
   }, []);
 
   return (

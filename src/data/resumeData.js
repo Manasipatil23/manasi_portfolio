@@ -40,7 +40,7 @@ export const personalInfo = {
     }
   },
   summary:
-    "Computer Engineering undergraduate (CGPA 9.33/10) focused on data engineering and analytics, with hands-on experience building a SQL Server data warehouse, Python data pipelines for ML research, and analytics services. Skilled in Python, SQL, and Power BI, with a record of turning raw data into dashboards, models, and clear insights."
+    "Computer Engineering undergraduate (CGPA 9.33/10) focused on data engineering and analytics, with hands-on experience building a SQL Server data warehouse, Python data pipelines for ML research, and analytics services. Skilled in Python, SQL, and Power BI. Seeking a 6-month internship and full-time roles from July 2027."
 };
 
 export const educationData = [
@@ -64,69 +64,27 @@ export const educationData = [
   }
 ];
 
+// Same groups and wording as the PDF resume (resume/resume.html); shown in the resume modal
 export const categorizedSkills = [
   {
-    category: "Programming & Query Languages",
-    description: "Core structured query logic, scripting, and algorithmic problem solving.",
-    skills: ["Python", "SQL (MySQL, PostgreSQL, SQL Server)", "T-SQL", "JavaScript"]
+    category: "Languages & Databases",
+    skills: ["Python", "SQL (MySQL, PostgreSQL, SQL Server)", "MongoDB"]
   },
   {
-    category: "Data Analytics & Visualization",
-    description: "Exploratory analysis, business intelligence, warehousing, and automated ETL pipelines.",
-    skills: [
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
-      "Seaborn",
-      "Power BI",
-      "Advanced Excel",
-      "EDA",
-      "Statistical Analysis",
-      "ETL Pipelines",
-      "Data Warehousing"
-    ]
+    category: "Data & Analytics",
+    skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Advanced Excel", "EDA", "Statistical Analysis", "ETL", "Data Warehousing"]
   },
   {
-    category: "AI & Machine Learning",
-    description: "Computer vision benchmarking, geospatial epidemiology, and deep neural backbones.",
-    skills: [
-      "Scikit-learn",
-      "PyTorch",
-      "TensorFlow",
-      "Deep Learning",
-      "Computer Vision",
-      "NLP",
-      "LLMs",
-      "LangChain",
-      "Hugging Face"
-    ]
+    category: "AI/ML",
+    skills: ["Scikit-learn", "PyTorch", "TensorFlow", "Deep Learning", "Computer Vision", "NLP", "LLMs", "LangChain", "Hugging Face"]
   },
   {
-    category: "Databases, Backend & Cloud",
-    description: "Relational/NoSQL persistence, secure REST APIs, and containerized deployment.",
-    skills: [
-      "MongoDB",
-      "FastAPI",
-      "Node.js",
-      "Express.js",
-      "React.js",
-      "REST APIs (JWT-secured)",
-      "Docker",
-      "AWS (EC2, S3)",
-      "Git"
-    ]
+    category: "Backend & Cloud",
+    skills: ["FastAPI", "Node.js", "Express.js", "React.js", "REST APIs", "Docker", "AWS (EC2, S3)", "Git"]
   },
   {
-    category: "Cybersecurity & Infrastructure",
-    description: "Framework compliance, risk assessment, network defense, and script automation.",
-    skills: [
-      "Security Frameworks (NIST)",
-      "Risk & Vulnerability Assessment",
-      "Network Security",
-      "Linux",
-      "SIEM & Incident Response",
-      "Python for Security Automation"
-    ]
+    category: "Cybersecurity",
+    skills: ["Security Frameworks (NIST)", "Risk & Vulnerability Assessment", "Network Security", "Linux", "SIEM & Incident Response", "Python for Security Automation"]
   }
 ];
 
@@ -362,6 +320,6 @@ export const evidenceLabels = {
 export const otherSkills = [
   "Pandas", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Statistical Analysis",
   "TensorFlow", "NLP", "LLMs", "LangChain", "Hugging Face",
-  "JavaScript", "Node.js", "Express.js", "Docker", "AWS (EC2, S3)", "PostgreSQL", "MySQL",
+  "Node.js", "Express.js", "Docker", "AWS (EC2, S3)", "PostgreSQL", "MySQL",
   "Security frameworks (NIST)", "Linux"
 ];

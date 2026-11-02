@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { X, Printer, Mail, MapPin, Linkedin, Github, Code2, Download } from 'lucide-react';
 import { personalInfo, educationData, categorizedSkills, experienceData, projectsData, certificationsData } from '../../data/resumeData';
 
+// Like the PDF: projects already covered by an Experience entry (e.g. the research) aren't repeated
+const resumeProjects = projectsData.filter(
+  (p) => !experienceData.some((exp) => exp.caseStudy === `project-${p.id}`)
+);
+
 export default function ResumeModal({ isOpen, onClose }) {
   const panelRef = useRef(null);
   const closeRef = useRef(null);
@@ -221,7 +226,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             Projects
           </h2>
           <div className="space-y-4">
-            {projectsData.map((proj) => (
+            {resumeProjects.map((proj) => (
               <div key={proj.id}>
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
                   <div className="text-xs">
