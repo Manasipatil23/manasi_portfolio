@@ -101,7 +101,7 @@ export const experienceData = [
     caseStudy: "research",
     // Shown on the site instead of the bullets, which the case study already covers (the resume keeps the bullets)
     brief:
-      "Built a Python pipeline that turns multi-band satellite imagery into NDWI patches, then trained and compared five deep-learning models that map malaria-risk zones. Findings presented at two institutions.",
+      "In a team of two, built a Python pipeline that turns multi-band satellite imagery into NDWI patches, then trained and compared five deep-learning models that map malaria-risk zones. Findings presented at two institutions.",
     bullets: [
       "Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.",
       "Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.",
@@ -297,6 +297,7 @@ export const otherSkills = [
 
 // ML research internship, from the internship presentation (Somaiya × Universiti Teknologi Malaysia)
 export const researchData = {
+  team: "Team of two, with Omkar Dinde",
   pipeline: [
     { stage: "Satellite TIFFs", items: ["Multi-band imagery", "Bands read per image"] },
     { stage: "NDWI", items: ["Water-index map", "Normalized pixel values"] },

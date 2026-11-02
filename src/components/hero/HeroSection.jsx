@@ -124,7 +124,7 @@ export default function HeroSection({ onOpenResumeModal }) {
           {/* Short, Meaningful Introduction strictly from Resume */}
           <div ref={bioRef} className="max-w-xl mb-7">
             <p className="font-body text-sm sm:text-base text-[#174B79]/85 leading-relaxed">
-              I've built a Bronze–Silver–Gold data warehouse in SQL Server that consolidates CRM and ERP data into a star schema, automated satellite-image processing in Python for ML research with Universiti Teknologi Malaysia, and built a FastAPI analytics service for campus placements. B.Tech Computer Engineering '27 at K J Somaiya.
+              I've built a Bronze–Silver–Gold data warehouse in SQL Server that consolidates CRM and ERP data into a star schema, automated satellite-image processing in Python in a two-person ML research team with Universiti Teknologi Malaysia, and built a FastAPI analytics service for campus placements. B.Tech Computer Engineering '27 at K J Somaiya.
             </p>
 
             {/* Availability */}
