@@ -82,6 +82,14 @@ export default function ContactSection({ onOpenResumeModal }) {
           
           {/* Left Column (7 cols): Heading and Copy */}
           <div className="lg:col-span-7 flex flex-col items-start">
+            <img
+              src="/images/manasi.webp"
+              alt="Manasi Patil"
+              width="400"
+              height="400"
+              loading="lazy"
+              className="contact-item w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-5"
+            />
             <div className="contact-item flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F]" />
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#FFAF94] font-bold">

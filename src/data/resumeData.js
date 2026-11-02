@@ -11,8 +11,8 @@ export const personalInfo = {
   availability: {
     roles: "Data Engineering · Data Analytics · ML",
     internship: "Seeking a 6-month internship",
-    fullTime: "Full-time roles from July 2027",
-    location: "Mumbai preferred"
+    fullTime: "Full-time from July 2027",
+    location: "Mumbai"
   },
   location: "Thane, Maharashtra, India",
   email: "manasipatil232005@gmail.com",

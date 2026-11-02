@@ -112,40 +112,29 @@ export default function HeroSection({ onOpenResumeModal }) {
             </span>
           </div>
 
-          {/* Portrait + name (portrait sits above the name on phones, beside it from sm up) */}
-          <div ref={nameRef} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 mb-4">
-            <img
-              src="/images/manasi.webp"
-              alt="Manasi Patil"
-              width="400"
-              height="400"
-              className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#F5F0E8] shadow-md shrink-0"
-            />
-            <h1 className="font-headline font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#174B79] tracking-tight leading-[1.08]">
-              Manasi Patil
-            </h1>
-          </div>
+          {/* Confident, Editorial Name & Headline */}
+          <h1 ref={nameRef} className="font-headline font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#174B79] tracking-tight leading-[1.08] mb-4">
+            Manasi Patil
+          </h1>
 
-          <p ref={taglineRef} className="font-headline font-semibold text-xl sm:text-2xl text-[#24699A] leading-snug mb-5 max-w-xl">
+          <p ref={taglineRef} className="font-headline font-semibold text-xl sm:text-2xl text-[#24699A] leading-snug mb-4 max-w-2xl">
             I build the data pipelines and warehouses that analytics runs on, and the ML that sits on top of them.
           </p>
 
-          {/* Short, Meaningful Introduction strictly from Resume */}
+          {/* Two-line proof + availability */}
           <div ref={bioRef} className="max-w-xl mb-7">
             <p className="font-body text-sm sm:text-base text-[#174B79]/85 leading-relaxed">
-              I've built a Bronze–Silver–Gold data warehouse in SQL Server that consolidates CRM and ERP data into a star schema, automated satellite-image processing in Python in a two-person ML research team with Universiti Teknologi Malaysia, and built a FastAPI analytics service for campus placements. B.Tech Computer Engineering '27 at K J Somaiya.
+              SQL Server warehouse, satellite-imagery ML research with UTM, and a FastAPI analytics platform. B.Tech Computer Engineering '27, K J Somaiya.
             </p>
 
-            {/* Availability */}
-            <div className="mt-4 inline-flex items-start sm:items-center gap-2.5 px-3.5 py-2 rounded-xl border border-[#D9C9B7] bg-[#FAF7F2] font-mono text-xs text-[#174B79]">
-              <span className="w-2 h-2 mt-1 sm:mt-0 rounded-full bg-emerald-500 shrink-0" aria-hidden="true" />
-              {/* Stacked on phones; one line with separators from sm up */}
-              <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-y-0.5">
-                <li className="font-semibold">{personalInfo.availability.internship}</li>
-                <li className="sm:before:content-['·'] sm:before:mx-2 sm:before:text-[#174B79]/50">{personalInfo.availability.fullTime}</li>
-                <li className="sm:before:content-['·'] sm:before:mx-2 sm:before:text-[#174B79]/50">{personalInfo.availability.location}</li>
-              </ul>
-            </div>
+            <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-[#174B79]">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true" />
+              <span className="font-semibold">{personalInfo.availability.internship}</span>
+              <span className="text-[#174B79]/50" aria-hidden="true">·</span>
+              <span>{personalInfo.availability.fullTime}</span>
+              <span className="text-[#174B79]/50" aria-hidden="true">·</span>
+              <span>{personalInfo.availability.location}</span>
+            </p>
           </div>
 
           {/* Primary Action Buttons */}
