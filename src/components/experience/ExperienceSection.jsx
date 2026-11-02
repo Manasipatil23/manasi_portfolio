@@ -63,14 +63,18 @@ export default function ExperienceSection() {
                 </div>
               </div>
 
-              <ul className="space-y-2 mb-4">
-                {exp.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F] mt-2 shrink-0" />
-                    <p className="font-body text-sm text-[#174B79]/90 leading-relaxed">{b}</p>
-                  </li>
-                ))}
-              </ul>
+              {exp.brief ? (
+                <p className="font-body text-sm text-[#174B79]/90 leading-relaxed mb-3">{exp.brief}</p>
+              ) : (
+                <ul className="space-y-2 mb-4">
+                  {exp.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F] mt-2 shrink-0" />
+                      <p className="font-body text-sm text-[#174B79]/90 leading-relaxed">{b}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               {exp.caseStudy && (
                 <a

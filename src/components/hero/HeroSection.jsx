@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
+import ResumeLink from '../ui/ResumeLink';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -100,7 +101,7 @@ export default function HeroSection({ onOpenResumeModal }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
         
         {/* Left Column (7 cols): Typography, Name, Introduction & Clear Actions */}
-        <div ref={textColRef} className="lg:col-span-7 flex flex-col items-start pr-0 lg:pr-6">
+        <div ref={textColRef} className="lg:col-span-8 flex flex-col items-start pr-0 lg:pr-6">
           
           {/* Editorial Kicker with vertical line (BLOOM reference style) */}
           <div ref={kickerRef} className="flex items-center gap-2.5 mb-5">
@@ -159,14 +160,14 @@ export default function HeroSection({ onOpenResumeModal }) {
               <span>Email Me</span>
             </a>
 
-            {/* Resume */}
-            <button
-              onClick={onOpenResumeModal}
+            {/* Resume PDF (falls back to the resume modal) */}
+            <ResumeLink
+              onOpenResumeModal={onOpenResumeModal}
               className="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-[#D9C9B7] hover:border-[#174B79] bg-[#FAF7F2] hover:bg-white text-[#174B79] font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
             >
               <FileText className="w-3.5 h-3.5 text-[#E9784F]" />
-              <span>Resume</span>
-            </button>
+              <span>Resume (PDF)</span>
+            </ResumeLink>
           </div>
 
           {/* Quick Credential Highlights Strip */}
@@ -180,17 +181,17 @@ export default function HeroSection({ onOpenResumeModal }) {
               <span className="font-bold text-sm sm:text-base text-[#E9784F]">10.0 / 10 CGPA</span>
             </div>
             <div>
-              <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">Research Track</span>
-              <span className="font-bold text-sm sm:text-base text-[#174B79]">Somaiya × UTM</span>
+              <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">ML Research</span>
+              <span className="font-bold text-sm sm:text-base text-[#174B79]">UTM collab · 2025–26</span>
             </div>
           </div>
         </div>
 
         {/* Right Column (5 cols): Beautiful Transparent Botanical Rose Spray */}
         {/* Decorative, so it's left out on phones and tablets where it would push content down */}
-        <div className="hidden lg:flex lg:col-span-5 relative items-center justify-center min-h-[460px]">
+        <div className="hidden lg:flex lg:col-span-4 relative items-center justify-center min-h-[380px]">
           
-          <div ref={roseRef} className="relative w-full max-w-[340px] sm:max-w-[400px] flex flex-col items-center will-change-transform">
+          <div ref={roseRef} className="relative w-full max-w-[280px] flex flex-col items-center will-change-transform">
             <picture>
               <source srcSet="/images/coral_rose_transparent.webp" type="image/webp" />
               <img
@@ -205,7 +206,7 @@ export default function HeroSection({ onOpenResumeModal }) {
 
             {/* Subtle Editorial Caption below the botanical art */}
             <div className="mt-2 flex items-center justify-between w-full font-mono text-[11px] text-[#174B79]/80 px-4">
-              <span className="tracking-widest uppercase">Somaiya × UTM ML Research</span>
+              <span className="tracking-widest uppercase">UTM ML Research</span>
               <span className="text-[#E9784F] font-bold">2025 — 2026</span>
             </div>
           </div>

@@ -99,6 +99,9 @@ export const experienceData = [
     tag: "Remote Sensing & Geospatial ML",
     // Anchor of the matching project case study, linked from the timeline
     caseStudy: "project-geospatial-research",
+    // Shown on the site instead of the bullets, which the case study already covers (the resume keeps the bullets)
+    brief:
+      "Built a Python pipeline for multi-band satellite imagery, benchmarked four segmentation models, and developed a malaria risk model with over 90% accuracy. Findings presented at two institutions.",
     bullets: [
       "Built a reproducible Python pipeline to automate band extraction and NDWI water-index computation from multi-band TIFF satellite data, replacing manual per-image processing.",
       "Benchmarked four segmentation models (DeepLabV3+, MobileNetV2-CBAM, ResNet-50, VGG19) on multi-spectral imagery, selecting the best by IoU and F1 and presenting findings at two institutions.",

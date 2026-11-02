@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Linkedin, Github, FileText, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Github, FileText, Mail, Menu, X, ArrowUpRight } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
+import ResumeLink from '../ui/ResumeLink';
 
 export default function Navbar({ onOpenResumeModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -129,14 +130,23 @@ export default function Navbar({ onOpenResumeModal }) {
             <Github className="w-4 h-4" />
           </a>
 
-          {/* Resume Button */}
-          <button
-            onClick={onOpenResumeModal}
+          {/* Email Icon Link */}
+          <a
+            href={`mailto:${personalInfo.email}`}
+            aria-label="Email Manasi Patil"
+            className="hidden sm:inline-flex p-1.5 rounded-full text-[#174B79] hover:bg-[#174B79]/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+
+          {/* Resume: opens the PDF when there is one, otherwise the resume modal */}
+          <ResumeLink
+            onOpenResumeModal={onOpenResumeModal}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#D9C9B7] bg-[#FAF7F2] hover:bg-white text-[#174B79] font-mono text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
           >
             <FileText className="w-3.5 h-3.5 text-[#E9784F]" />
             <span className="sr-only sm:not-sr-only">Resume</span>
-          </button>
+          </ResumeLink>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -165,24 +175,30 @@ export default function Navbar({ onOpenResumeModal }) {
               {link.label}
             </a>
           ))}
-          <div className="pt-3 border-t border-[#D9C9B7] flex items-center justify-between">
+          <div className="pt-3 border-t border-[#D9C9B7] flex flex-wrap items-center justify-between gap-3">
             <a
               href={personalInfo.socials.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-xs text-[#E9784F] font-bold flex items-center gap-1"
             >
-              <Linkedin className="w-3.5 h-3.5" /> LinkedIn Profile ↗
+              <Linkedin className="w-3.5 h-3.5" /> LinkedIn ↗
             </a>
-            <button
-              onClick={() => {
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="font-mono text-xs text-[#174B79] font-semibold flex items-center gap-1"
+            >
+              <Mail className="w-3.5 h-3.5" /> Email
+            </a>
+            <ResumeLink
+              onOpenResumeModal={() => {
                 setMobileMenuOpen(false);
                 onOpenResumeModal?.();
               }}
               className="font-mono text-xs text-[#174B79] font-semibold"
             >
-              View Resume
-            </button>
+              Resume (PDF)
+            </ResumeLink>
           </div>
         </div>
       )}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -27,6 +27,7 @@ export default function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const openResumeModal = useCallback(() => setIsResumeModalOpen(true), []);
   const closeResumeModal = useCallback(() => setIsResumeModalOpen(false), []);
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,6 +42,7 @@ export default function App() {
         // Smooth in-page links (nav, project jump links, skill evidence); targets use scroll-mt-* to clear the fixed header
         anchors: true,
       });
+      lenisRef.current = lenis;
 
       // Connect Lenis to GSAP ScrollTrigger
       lenis.on('scroll', ScrollTrigger.update);
@@ -51,9 +53,24 @@ export default function App() {
       return () => {
         gsap.ticker.remove(tick);
         lenis.destroy();
+        lenisRef.current = null;
       };
     }
   }, []);
+
+  // Keep the page behind the resume modal from scrolling
+  useEffect(() => {
+    if (!isResumeModalOpen) return;
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = 'hidden';
+    lenisRef.current?.stop();
+
+    return () => {
+      root.style.overflow = previousOverflow;
+      lenisRef.current?.start();
+    };
+  }, [isResumeModalOpen]);
 
   return (
     <div className="relative min-h-screen bg-[#F5F0E8] text-[#174B79] selection:bg-[#E9784F]/20 selection:text-[#174B79]">
