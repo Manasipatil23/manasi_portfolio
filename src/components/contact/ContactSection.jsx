@@ -86,8 +86,8 @@ export default function ContactSection({ onOpenResumeModal }) {
             <img
               src="/images/manasi.webp"
               alt="Manasi Patil"
-              width="400"
-              height="400"
+              width="600"
+              height="600"
               loading="lazy"
               className="contact-item w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-5"
             />
