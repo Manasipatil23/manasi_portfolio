@@ -3,6 +3,7 @@ import { ArrowDown, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
 import ResumeLink from '../ui/ResumeLink';
 import MedallionStack from './MedallionStack';
+import CountUp from '../ui/CountUp';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -173,11 +174,11 @@ export default function HeroSection({ onOpenResumeModal }) {
           <div ref={credentialsRef} className="pt-5 border-t border-[#D9C9B7] w-full grid grid-cols-3 gap-4 font-mono text-xs text-[#174B79]">
             <div>
               <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">Academic Merit</span>
-              <span className="font-bold text-sm sm:text-base text-[#174B79]">9.33 / 10 CGPA</span>
+              <span className="font-bold text-sm sm:text-base text-[#174B79]"><CountUp value={9.33} /> / 10 CGPA</span>
             </div>
             <div>
               <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">Data Science Honours</span>
-              <span className="font-bold text-sm sm:text-base text-[#E9784F]">10.0 / 10 CGPA</span>
+              <span className="font-bold text-sm sm:text-base text-[#E9784F]"><CountUp value={10} decimals={1} /> / 10 CGPA</span>
             </div>
             <div>
               <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">ML Research</span>

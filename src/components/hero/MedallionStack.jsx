@@ -159,7 +159,6 @@ export default function MedallionStack() {
             </li>
           ))}
         </ul>
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#174B79]/80">Move your cursor to tilt</span>
       </figcaption>
     </figure>
   );

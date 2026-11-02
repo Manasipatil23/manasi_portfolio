@@ -1,6 +1,7 @@
 import React from 'react';
 import { educationData, certificationsData } from '../../data/resumeData';
 import SectionHeader from '../ui/SectionHeader';
+import CountUp from '../ui/CountUp';
 
 export default function EducationSection() {
   return (
@@ -27,7 +28,7 @@ export default function EducationSection() {
 
                 <div className="mt-3 flex items-baseline gap-2">
                   <span className={`font-headline font-extrabold text-2xl ${isHonours ? 'text-[#E9784F]' : 'text-[#174B79]'}`}>
-                    {isHonours ? edu.scoreValue.toFixed(1) : edu.scoreValue.toFixed(2)}
+                    <CountUp value={edu.scoreValue} decimals={isHonours ? 1 : 2} />
                   </span>
                   <span className="font-mono text-xs text-[#174B79]/80">
                     / {edu.scoreMax.toFixed(1)} {edu.scoreLabel}
