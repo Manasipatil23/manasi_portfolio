@@ -4,7 +4,7 @@ import SplitLetters from './SplitLetters';
 // Kicker line + heading + optional intro, shared by every main section
 export default function SectionHeader({ kicker, title, intro, aside, titleVariant, titleUnderline }) {
   return (
-    <div className="mb-10">
+    <div className="mb-6 sm:mb-10">
       <div className="flex items-center gap-2.5 mb-3">
         <span className="w-[1.5px] h-4 bg-[#E9784F]" />
         <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#174B79] font-bold">

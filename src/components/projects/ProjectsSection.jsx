@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { projectsData } from '../../data/resumeData';
 import { Github, ArrowUpRight, CheckCircle2, ChevronDown, Lock } from 'lucide-react';
 import gsap from 'gsap';
@@ -42,6 +42,9 @@ function Label({ children, className = 'text-[#174B79]/80' }) {
 }
 
 function CaseStudy({ project, index }) {
+  // Phones fold the build details away to cut scrolling; laptops always show them
+  const [open, setOpen] = useState(false);
+
   return (
     <article
       id={`project-${project.id}`}
@@ -49,7 +52,7 @@ function CaseStudy({ project, index }) {
       aria-labelledby={`project-${project.id}-title`}
     >
       {/* Header */}
-      <header className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-5 mb-6 border-b border-[#D9C9B7]">
+      <header className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 mb-4 sm:pb-5 sm:mb-6 border-b border-[#D9C9B7]">
         <div>
           <span className="font-mono text-xs uppercase tracking-wider text-[#E9784F] font-bold block mb-1">
             0{index + 1} · {project.year}
@@ -65,8 +68,8 @@ function CaseStudy({ project, index }) {
       </header>
 
       {/* Problem + Outcome */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-5 md:mb-6">
+        <div className={`${open ? '' : 'hidden'} md:block`}>
           <Label className="text-[#E9784F]">Problem</Label>
           <p className="font-body text-sm text-[#174B79]/90 leading-relaxed">{project.problem}</p>
         </div>
@@ -77,14 +80,24 @@ function CaseStudy({ project, index }) {
       </div>
 
       {/* Architecture */}
-      <div className="mb-6">
+      <div className="mb-5 md:mb-6">
         <ArchitectureFlow stages={project.architecture} label="How the data flows" />
       </div>
 
       {project.id === 'data-warehouse' && <GoldExplorer />}
 
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="md:hidden w-full mb-5 flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl border border-[#D9C9B7] bg-[#F5F0E8]/60 font-mono text-xs uppercase tracking-wider font-bold text-[#174B79] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9784F]"
+      >
+        {open ? 'Hide details' : 'Problem and what I built'}
+        <ChevronDown className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
       {/* What I built (design choices fold away to keep the card short) */}
-      <div className="mb-6">
+      <div className={`${open ? '' : 'hidden'} md:block mb-6`}>
         <div>
           <Label>What I built</Label>
           <ul className="space-y-2">
@@ -114,7 +127,7 @@ function CaseStudy({ project, index }) {
 
       {/* Real code excerpts, only when added in resumeData */}
       {project.codeSnippets?.length > 0 && (
-        <div className="mb-6 space-y-3">
+        <div className={`${open ? '' : 'hidden'} md:block mb-6 space-y-3`}>
           <Label>From the code</Label>
           {project.codeSnippets.map((snip) => (
             <figure key={snip.title} className="rounded-xl overflow-hidden border border-[#0F3354]">
@@ -169,7 +182,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="projects" ref={sectionRef} className="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <SectionHeader
         kicker="01 • Selected Work"
         title="Projects"

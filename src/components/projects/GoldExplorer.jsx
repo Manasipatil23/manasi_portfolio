@@ -97,6 +97,7 @@ export default function GoldExplorer() {
   const [axis, setAxis] = useState(-1);
   const [slice, setSlice] = useState(null);
   const [hover, setHover] = useState(null);
+  const [view, setView] = useState('cube'); // phones show one panel at a time
 
   const filter = axis >= 0 && slice !== null ? { [axis]: slice } : {};
   const grand = useMemo(() => total(sales), [sales]);
@@ -131,8 +132,25 @@ export default function GoldExplorer() {
       </span>
 
       <div className="rounded-2xl border border-[#D9C9B7] bg-[#F5F0E8]/60 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        {/* Phone tabs: 3D cube or the report page */}
+        <div className="lg:hidden flex border-b border-[#D9C9B7]" role="tablist">
+          {[['cube', '3D cube'], ['report', 'Dashboard']].map(([key, label]) => (
+            <button
+              key={key}
+              role="tab"
+              aria-selected={view === key}
+              onClick={() => setView(key)}
+              className={`flex-1 py-2.5 font-mono text-xs uppercase tracking-wider font-bold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#E9784F] ${
+                view === key ? 'bg-[#174B79] text-[#F5F0E8]' : 'text-[#174B79]'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
         {/* Cube */}
-        <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#D9C9B7] flex flex-col">
+        <div className={`${view === 'cube' ? 'flex' : 'hidden'} lg:flex lg:col-span-5 lg:border-r border-[#D9C9B7] flex-col`}>
           <SalesCube
             sales={sales}
             axis={axis}
@@ -157,7 +175,7 @@ export default function GoldExplorer() {
         </div>
 
         {/* Report page */}
-        <div className="lg:col-span-7 p-4 flex flex-col gap-3">
+        <div className={`${view === 'report' ? 'flex' : 'hidden'} lg:flex lg:col-span-7 p-4 flex-col gap-3`}>
           <div className="flex items-center justify-between gap-2">
             <span className="font-headline font-bold text-[#174B79]">Sales overview</span>
             {sample && (

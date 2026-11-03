@@ -69,9 +69,9 @@ export default function ContactSection({ onOpenResumeModal }) {
   }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="relative pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="contact" ref={sectionRef} className="relative pt-10 sm:pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Contact Card */}
-      <div ref={cardRef} className="card-blue p-7 sm:p-12 relative overflow-hidden shadow-lg mb-12">
+      <div ref={cardRef} className="card-blue p-6 sm:p-12 relative overflow-hidden shadow-lg mb-12">
         
         {/* Subtle Background Paper Texture */}
         <div className="absolute inset-0 opacity-10 pointer-events-none paper-texture" />
@@ -79,17 +79,17 @@ export default function ContactSection({ onOpenResumeModal }) {
         {/* Decorative coral accent circle top-right */}
         <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#E9784F]/10 -translate-y-1/3 translate-x-1/3 pointer-events-none" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           
           {/* Left Column (7 cols): Heading and Copy */}
-          <div className="lg:col-span-7 flex flex-col items-start">
+          <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left">
             <img
               src="/images/manasi.webp"
               alt="Manasi Patil"
               width="600"
               height="600"
               loading="lazy"
-              className="contact-item w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-5"
+              className="contact-item w-28 h-28 sm:w-40 sm:h-40 rounded-full object-cover ring-2 ring-[#E9784F] ring-offset-4 ring-offset-[#174B79] shadow-lg mb-4 sm:mb-5"
             />
             <div className="contact-item flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E9784F]" />
@@ -102,15 +102,16 @@ export default function ContactSection({ onOpenResumeModal }) {
               as="h2"
               text="Hiring for data engineering or analytics roles? Let's talk."
               variant="typewriter"
-              className="font-headline font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-3"
+              className="font-headline font-bold text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-5 sm:mb-3"
             />
 
-            <p className="contact-item font-body text-xs sm:text-sm text-[#F5F0E8]/80 leading-relaxed max-w-lg mb-6">
+            {/* Phones skip this: the hero already states availability */}
+            <p className="contact-item hidden sm:block font-body text-xs sm:text-sm text-[#F5F0E8]/80 leading-relaxed max-w-lg mb-6">
               I'm looking for a 6-month internship now and full-time roles from July 2027, preferably in Mumbai. Data engineering first, then data analytics and ML.
             </p>
 
             {/* Direct Contact Actions */}
-            <div className="contact-item flex flex-wrap items-center gap-2.5">
+            <div className="contact-item flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               {/* Primary LinkedIn Button in Coral Accent */}
               <a
                 href={personalInfo.socials.linkedin.url}
@@ -130,8 +131,8 @@ export default function ContactSection({ onOpenResumeModal }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-[#F5F0E8]/10 hover:bg-[#F5F0E8]/20 text-[#F5F0E8] border border-[#F5F0E8]/20 font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
               >
-                <Github className="w-4 h-4" />
-                <span>GitHub</span>
+                <Github className="w-4 h-4" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only">GitHub</span>
               </a>
 
               {/* LeetCode Button */}
@@ -141,8 +142,8 @@ export default function ContactSection({ onOpenResumeModal }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-[#F5F0E8]/10 hover:bg-[#F5F0E8]/20 text-[#F5F0E8] border border-[#F5F0E8]/20 font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#E9784F]"
               >
-                <Code2 className="w-4 h-4" />
-                <span>LeetCode</span>
+                <Code2 className="w-4 h-4" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only">LeetCode</span>
               </a>
             </div>
           </div>

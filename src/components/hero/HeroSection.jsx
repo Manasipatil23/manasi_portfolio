@@ -103,7 +103,7 @@ export default function HeroSection({ onOpenResumeModal }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
         
         {/* Left Column (7 cols): Typography, Name, Introduction & Clear Actions */}
-        <div ref={textColRef} className="lg:col-span-8 flex flex-col items-start pr-0 lg:pr-6">
+        <div ref={textColRef} className="lg:col-span-8 flex flex-col items-center text-center lg:items-start lg:text-left pr-0 lg:pr-6">
           
           {/* Editorial Kicker with vertical line (BLOOM reference style) */}
           <div ref={kickerRef} className="flex items-center gap-2.5 mb-5">
@@ -128,7 +128,7 @@ export default function HeroSection({ onOpenResumeModal }) {
               SQL Server warehouse, satellite-imagery ML research with UTM, and a FastAPI analytics platform. B.Tech Computer Engineering '27, K J Somaiya.
             </p>
 
-            <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-[#174B79]">
+            <p className="mt-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1 font-mono text-xs text-[#174B79]">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true" />
               <span className="font-semibold">{personalInfo.availability.internship}</span>
               <span className="text-[#174B79]/50" aria-hidden="true">·</span>
@@ -139,7 +139,7 @@ export default function HeroSection({ onOpenResumeModal }) {
           </div>
 
           {/* Primary Action Buttons */}
-          <div ref={ctasRef} className="flex flex-wrap items-center gap-3 mb-8">
+          <div ref={ctasRef} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
             {/* Circular Arrow Button */}
             <a
               href="#projects"
@@ -171,18 +171,18 @@ export default function HeroSection({ onOpenResumeModal }) {
           </div>
 
           {/* Quick Credential Highlights Strip */}
-          <div ref={credentialsRef} className="pt-5 border-t border-[#D9C9B7] w-full grid grid-cols-3 gap-4 font-mono text-xs text-[#174B79]">
+          <div ref={credentialsRef} className="pt-5 border-t border-[#D9C9B7] w-full grid grid-cols-3 gap-2 sm:gap-4 font-mono text-xs text-[#174B79]">
             <div>
-              <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">Academic Merit</span>
-              <span className="font-bold text-sm sm:text-base text-[#174B79]"><CountUp value={9.33} /> / 10 CGPA</span>
+              <span className="text-[#174B79]/80 text-[10px] sm:text-[11px] block uppercase tracking-wider"><span className="sm:hidden">CGPA</span><span className="hidden sm:inline">Academic Merit · CGPA</span></span>
+              <span className="font-bold text-lg sm:text-base text-[#174B79]"><CountUp value={9.33} /><span className="text-[11px] sm:text-base font-normal sm:font-bold"> / 10</span></span>
             </div>
             <div>
-              <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">Data Science Honours</span>
-              <span className="font-bold text-sm sm:text-base text-[#E9784F]"><CountUp value={10} decimals={1} /> / 10 CGPA</span>
+              <span className="text-[#174B79]/80 text-[10px] sm:text-[11px] block uppercase tracking-wider"><span className="sm:hidden">DS Honours</span><span className="hidden sm:inline">Data Science Honours</span></span>
+              <span className="font-bold text-lg sm:text-base text-[#E9784F]"><CountUp value={10} decimals={1} /><span className="text-[11px] sm:text-base font-normal sm:font-bold"> / 10</span></span>
             </div>
             <div>
-              <span className="text-[#174B79]/80 text-[11px] block uppercase tracking-wider">ML Research</span>
-              <span className="font-bold text-sm sm:text-base text-[#174B79]">UTM collab · 2025–26</span>
+              <span className="text-[#174B79]/80 text-[10px] sm:text-[11px] block uppercase tracking-wider">ML Research</span>
+              <span className="font-bold text-lg sm:text-base text-[#174B79]">UTM<span className="text-[11px] sm:text-base font-normal sm:font-bold"> collab · 2025–26</span></span>
             </div>
           </div>
         </div>

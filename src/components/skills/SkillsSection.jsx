@@ -59,7 +59,7 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="skills" className="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <SectionHeader
         kicker="04 • Skills"
         title="Skills, with Evidence"
