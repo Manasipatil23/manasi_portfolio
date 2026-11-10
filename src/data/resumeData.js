@@ -160,45 +160,7 @@ export const projectsData = [
       "Gold is modeled as a star schema with customer and product dimensions around a sales fact table, ready for BI tools.",
       "Data catalog and data-flow documentation kept alongside the SQL, all version-controlled in Git."
     ],
-    // Verbatim excerpts from the repo (scripts/bronze/proc_load_bronze.sql, scripts/silver/proc_load_silver.sql)
-    codeSnippets: [
-      {
-        title: "bronze.load_bronze: full load of one source file (CSV has Windows line endings)",
-        language: "sql",
-        code: `TRUNCATE TABLE bronze.crm_cust_info;
-BULK INSERT bronze.crm_cust_info
-FROM '/datasets/source_crm/cust_info.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0d0a',
-    TABLOCK
-);`
-      },
-      {
-        title: "silver.crm_cust_info: keep each customer's latest record, standardise codes",
-        language: "sql",
-        code: `SELECT
-    cst_id,
-    cst_key,
-    TRIM(cst_firstname) AS cst_firstname,
-    TRIM(cst_lastname) AS cst_lastname,
-    CASE
-        WHEN cst_marital_status = 'M' THEN 'Married'
-        WHEN cst_marital_status = 'S' THEN 'Single'
-        ELSE 'n/a'
-    END AS cst_marital_status,
-    ...
-FROM (
-    SELECT
-        *,
-        ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) AS flag_last
-    FROM bronze.crm_cust_info
-    WHERE cst_id IS NOT NULL
-) t
-WHERE flag_last = 1;`
-      }
-    ],
+    codeSnippets: [],
     problem:
       "Customer, product and sales data was split across separate CRM and ERP source systems, with no single model to report on.",
     contribution:
