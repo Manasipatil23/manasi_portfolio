@@ -75,18 +75,12 @@
 }
 
 /* Architecture flow: a dot travels right along each connector */
+/* Moved by ArchitectureFlow.jsx (Web Animations), one connector after another */
 .flow-dot {
   left: 0;
   top: 50%;
+  opacity: 0;
   transform: translate(-50%, -50%);
-  animation: flow-right 1.6s ease-in-out infinite;
-}
-
-@keyframes flow-right {
-  from { left: 0; opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  to { left: 100%; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
