@@ -3,7 +3,8 @@ import { ChevronDown, Info } from 'lucide-react';
 import { goldCube } from '../../data/resumeData';
 import SalesCube from './SalesCube';
 
-const fmt = (v) => `$${Math.round(v).toLocaleString('en-US')}K`;
+// Values are in $K: show millions once they get large
+const fmt = (v) => (v >= 1000 ? `$${(v / 1000).toFixed(2)}M` : `$${Math.round(v)}K`);
 
 // Sum of every cell that matches a {axis: index} filter
 const total = (sales, filter = {}) => {
@@ -93,7 +94,7 @@ function Columns({ title, rows, max }) {
 // "What the Gold layer feeds": the cube and a report page share one filter.
 // Pick a slicer value (or click a slice of the cube) and both update together.
 export default function GoldExplorer() {
-  const { axes, sales, sample, query } = goldCube;
+  const { axes, sales, sample, source, query } = goldCube;
   const [axis, setAxis] = useState(-1);
   const [slice, setSlice] = useState(null);
   const [hover, setHover] = useState(null);
@@ -120,7 +121,7 @@ export default function GoldExplorer() {
   const cutBy = (a) => { setAxis(a); setSlice(null); };
 
   const hoverText = hover
-    ? `${hover.p.map((i, a) => axes[a].values[i]).join(' · ')}: ${fmt(hover.v)}`
+    ? `${hover.p.map((i, a) => axes[a].values[i]).join(' · ')}: ${hover.v > 0 ? fmt(hover.v) : 'no sales'}`
     : axis < 0
       ? 'Drag to turn the cube. Cut it open by an axis below.'
       : `Cut by ${axes[axis].name.toLowerCase()}. Click a slice, or pick it on the right.`;
@@ -128,7 +129,7 @@ export default function GoldExplorer() {
   return (
     <div id="gold-explorer" className="mb-6 scroll-mt-28">
       <span className="font-mono text-[11px] uppercase tracking-wider font-bold block mb-1.5 text-[#174B79]/80">
-        What the Gold layer feeds
+        The sales data, explored
       </span>
 
       <div className="rounded-2xl border border-[#D9C9B7] bg-[#F5F0E8]/60 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
@@ -178,12 +179,12 @@ export default function GoldExplorer() {
         <div className={`${view === 'report' ? 'flex' : 'hidden'} lg:flex lg:col-span-7 p-4 flex-col gap-3`}>
           <div className="flex items-center justify-between gap-2">
             <span className="font-headline font-bold text-[#174B79]">Sales overview</span>
-            {sample && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FFE6DB] text-[#9A3A17] font-mono text-[10px] uppercase tracking-wider">
-                <Info className="w-3 h-3" aria-hidden="true" />
-                Sample data
-              </span>
-            )}
+            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-mono text-[10px] uppercase tracking-wider ${
+              sample ? 'bg-[#FFE6DB] text-[#9A3A17]' : 'bg-[#E3F0E6] text-[#1F5E33]'
+            }`}>
+              <Info className="w-3 h-3" aria-hidden="true" />
+              {sample ? 'Sample data' : 'Real project data'}
+            </span>
           </div>
 
           {/* Slicers */}
@@ -226,17 +227,14 @@ export default function GoldExplorer() {
             <Columns title={`Sales by ${axes[colAxis].name.toLowerCase()}`} rows={cols} max={Math.max(...cols.map((r) => r.v))} />
           </div>
 
+          {source && <p className="font-body text-xs text-[#174B79]/80 leading-relaxed">{source}</p>}
+
           <details className="group rounded-lg border border-[#D9C9B7] bg-white">
             <summary className="flex items-center justify-between cursor-pointer list-none px-3 py-2 font-mono text-[11px] uppercase tracking-wider font-bold text-[#174B79] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9784F] rounded-lg">
               The SQL behind it
               <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
             </summary>
             <pre className="px-3 pb-3 font-mono text-[11px] leading-relaxed text-[#174B79] overflow-x-auto"><code>{query}</code></pre>
-            {sample && (
-              <p className="px-3 pb-3 font-body text-xs text-[#174B79]/80">
-                Numbers shown are sample values in the shape of the warehouse's sales data, until this query's real output is plugged in.
-              </p>
-            )}
           </details>
         </div>
       </div>

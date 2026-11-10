@@ -160,8 +160,45 @@ export const projectsData = [
       "Gold is modeled as a star schema with customer and product dimensions around a sales fact table, ready for BI tools.",
       "Data catalog and data-flow documentation kept alongside the SQL, all version-controlled in Git."
     ],
-    // Add real excerpts from the repo here, e.g. { title: "silver.load_silver", language: "sql", code: "..." }
-    codeSnippets: [],
+    // Verbatim excerpts from the repo (scripts/bronze/proc_load_bronze.sql, scripts/silver/proc_load_silver.sql)
+    codeSnippets: [
+      {
+        title: "bronze.load_bronze: full load of one source file (CSV has Windows line endings)",
+        language: "sql",
+        code: `TRUNCATE TABLE bronze.crm_cust_info;
+BULK INSERT bronze.crm_cust_info
+FROM '/datasets/source_crm/cust_info.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0d0a',
+    TABLOCK
+);`
+      },
+      {
+        title: "silver.crm_cust_info: keep each customer's latest record, standardise codes",
+        language: "sql",
+        code: `SELECT
+    cst_id,
+    cst_key,
+    TRIM(cst_firstname) AS cst_firstname,
+    TRIM(cst_lastname) AS cst_lastname,
+    CASE
+        WHEN cst_marital_status = 'M' THEN 'Married'
+        WHEN cst_marital_status = 'S' THEN 'Single'
+        ELSE 'n/a'
+    END AS cst_marital_status,
+    ...
+FROM (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) AS flag_last
+    FROM bronze.crm_cust_info
+    WHERE cst_id IS NOT NULL
+) t
+WHERE flag_last = 1;`
+      }
+    ],
     problem:
       "Customer, product and sales data was split across separate CRM and ERP source systems, with no single model to report on.",
     contribution:
@@ -342,34 +379,61 @@ export const researchData = {
   ]
 };
 
-// Gold-layer explorer under the warehouse case study (3D cube + report page).
-// SAMPLE NUMBERS: shaped like the warehouse's sales data, not real query output.
-// Replace `sales` with the result of `query` run on the gold views and set sample to false.
-const SAMPLE_YEAR = [0.55, 0.85, 1.25, 0.35];     // 2014 is a partial year
-const SAMPLE_CATEGORY = [1.0, 0.09, 0.14, 0.32];
-const SAMPLE_COUNTRY = [1.0, 0.92, 0.38, 0.33];
+// Explorer under the warehouse case study (3D cube + report page).
+// Real totals from the repo's CRM + ERP source CSVs (60,379 order lines, $29.35M),
+// cleaned with the rules in `query`. Shown: full years 2011–2013 and the six named
+// countries, which together hold 98.9% of sales.
 export const goldCube = {
-  sample: true,
+  sample: false,
   unit: "$K",
+  source: "Real totals from the project's CRM and ERP source files: 60,379 order lines, $29.35M in sales. Shown here: the full years 2011–2013 and the six countries on record, 98.9% of all sales.",
   axes: [
-    { name: "Year", values: ["2011", "2012", "2013", "2014"] },
-    { name: "Category", values: ["Bikes", "Components", "Clothing", "Accessories"] },
-    { name: "Country", values: ["USA", "Australia", "UK", "Germany"] }
+    { name: "Year", values: ["2011", "2012", "2013"] },
+    { name: "Category", values: ["Bikes", "Accessories", "Clothing"] },
+    { name: "Country", values: ["USA", "Australia", "UK", "Germany", "France", "Canada"] }
   ],
   // sales[year][category][country], in $K
-  sales: SAMPLE_YEAR.map((y, yi) =>
-    SAMPLE_CATEGORY.map((c, ci) =>
-      SAMPLE_COUNTRY.map((k, ki) =>
-        Math.round(1400 * y * c * k * (0.85 + ((yi * 7 + ci * 5 + ki * 3) % 6) * 0.06))
-      )
-    )
-  ),
-  query: `SELECT YEAR(f.order_date)  AS order_year,
-       p.category,
-       c.country,
-       SUM(f.sales_amount)    AS sales
-FROM gold.fact_sales f
-JOIN gold.dim_products  p ON p.product_key  = f.product_key
-JOIN gold.dim_customers c ON c.customer_key = f.customer_key
-GROUP BY YEAR(f.order_date), p.category, c.country;`
+  sales: [
+    [[2451, 2564, 551, 520, 411, 572], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
+    [[1434, 2128, 712, 608, 648, 307], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]],
+    [[4887, 4139, 2017, 1680, 1489, 939], [237, 133, 74, 59, 60, 97], [120, 67, 31, 23, 26, 50]]
+  ],
+  query: `-- Sales by year, category and country, cleaned from the Bronze tables
+WITH customers AS (         -- latest record per customer
+  SELECT cst_id, cst_key,
+         ROW_NUMBER() OVER (PARTITION BY cst_id
+                            ORDER BY cst_create_date DESC) AS rn
+  FROM bronze.crm_cust_info
+  WHERE cst_id IS NOT NULL
+),
+products AS (               -- 'CO-RF-FR-R92B-58' -> category 'CO_RF', key 'FR-R92B-58'
+  SELECT DISTINCT SUBSTRING(prd_key, 7, LEN(prd_key))     AS prd_key,
+         REPLACE(SUBSTRING(prd_key, 1, 5), '-', '_')      AS cat_id
+  FROM bronze.crm_prd_info
+),
+locations AS (              -- 'AW-00011000' -> 'AW00011000', country codes spelled out
+  SELECT REPLACE(cid, '-', '') AS cst_key,
+         CASE WHEN TRIM(cntry) = 'DE' THEN 'Germany'
+              WHEN TRIM(cntry) IN ('US', 'USA') THEN 'United States'
+              WHEN cntry IS NULL OR TRIM(cntry) = '' THEN 'n/a'
+              ELSE TRIM(cntry) END AS country
+  FROM bronze.erp_loc_a101
+),
+sales AS (                  -- drop bad dates, repair sales = quantity x |price|
+  SELECT sls_prd_key, sls_cust_id,
+         LEFT(CAST(sls_order_dt AS VARCHAR(8)), 4) AS order_year,
+         CASE WHEN sls_sales IS NULL OR sls_sales <= 0
+                   OR sls_sales != sls_quantity * ABS(sls_price)
+              THEN sls_quantity * ABS(sls_price)
+              ELSE sls_sales END AS sales
+  FROM bronze.crm_sales_details
+  WHERE LEN(sls_order_dt) = 8
+)
+SELECT s.order_year, pc.cat AS category, l.country, SUM(s.sales) AS sales
+FROM sales s
+JOIN products p                ON p.prd_key = s.sls_prd_key
+JOIN bronze.erp_px_cat_g1v2 pc ON pc.id     = p.cat_id
+JOIN customers c               ON c.cst_id  = s.sls_cust_id AND c.rn = 1
+LEFT JOIN locations l          ON l.cst_key = c.cst_key
+GROUP BY s.order_year, pc.cat, l.country;`
 };

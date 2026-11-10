@@ -1,30 +1,32 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 
-const CELL = 36;
+const CELL = 32;
 const GAP = 4;
-const SPREAD = 30; // extra space between slices when the cube is cut open
+const SPREAD = 22; // extra space between slices when the cube is cut open
 const RAMP = ['#FBE3D8', '#F5B89E', '#E9784F', '#24699A', '#174B79'];
 const FACES = [
   'rotateY(0deg)', 'rotateY(180deg)', 'rotateY(90deg)',
   'rotateY(-90deg)', 'rotateX(90deg)', 'rotateX(-90deg)',
 ];
 
-// 4×4×4 CSS-3D cube: one small cube per year × category × country, coloured by sales.
+// CSS-3D cube: one small cube per year × category × country, coloured by sales
+// (empty combinations show as outlines). Sized from the data, so any axis length works.
 // Spins on its own while on screen; drag (or swipe sideways) to turn it.
 export default function SalesCube({ sales, axis, slice, onPick, onHover }) {
   const stageRef = useRef(null);
   const cubeRef = useRef(null);
 
   const cells = useMemo(() => {
-    const flat = sales.flat(2);
-    const sorted = [...flat].sort((a, b) => a - b);
-    const bucket = (v) => Math.min(4, Math.floor((sorted.indexOf(v) / flat.length) * 5));
+    // Colour by rank among the combinations that sold anything
+    const sold = sales.flat(2).filter((v) => v > 0).sort((a, b) => a - b);
+    const bucket = (v) => Math.min(4, Math.floor((sold.indexOf(v) / sold.length) * 5));
     const out = [];
     sales.forEach((cats, y) => cats.forEach((countries, c) => countries.forEach((v, k) => {
-      out.push({ p: [y, c, k], v, color: RAMP[bucket(v)] });
+      out.push({ p: [y, c, k], v, color: v > 0 ? RAMP[bucket(v)] : null });
     })));
     return out;
   }, [sales]);
+  const dims = [sales.length, sales[0].length, sales[0][0].length];
 
   // Rotation lives outside React state so it can run every frame
   useEffect(() => {
@@ -79,7 +81,7 @@ export default function SalesCube({ sales, axis, slice, onPick, onHover }) {
   }, []);
 
   const offset = (i, c) => {
-    const centred = c - 1.5;
+    const centred = c - (dims[i] - 1) / 2;
     return centred * (CELL + GAP) + (i === axis ? centred * SPREAD : 0);
   };
 
@@ -112,8 +114,8 @@ export default function SalesCube({ sales, axis, slice, onPick, onHover }) {
               {FACES.map((f) => (
                 <i
                   key={f}
-                  className="absolute inset-0 border border-[#174B79]/30"
-                  style={{ background: color, transform: `${f} translateZ(${CELL / 2}px)`, backfaceVisibility: 'hidden' }}
+                  className={`absolute inset-0 border ${color ? 'border-[#174B79]/30' : 'border-dashed border-[#174B79]/25'}`}
+                  style={{ background: color ?? 'transparent', transform: `${f} translateZ(${CELL / 2}px)`, backfaceVisibility: color ? 'hidden' : 'visible' }}
                 />
               ))}
             </div>
