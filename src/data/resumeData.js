@@ -145,7 +145,7 @@ export const projectsData = [
     tagline: "End-to-end multi-layer data warehouse consolidating CRM and ERP systems",
     year: "2026",
     stack: ["SQL Server", "T-SQL", "ETL", "Data Modeling", "Git"],
-    githubUrl: "https://github.com/Manasipatil23/sql-data-warehouse-project",
+    githubUrl: "https://github.com/Manasipatil23/sql_data_warehouse_project",
     // Data flow shown as a diagram in the case study (facts from the repo README and resume)
     architecture: [
       { stage: "Sources", items: ["CRM CSV files", "ERP CSV files"] },
