@@ -179,9 +179,7 @@ export const projectsData = [
     tagline: "ML-driven resume evaluation & real-time placement funnel intelligence",
     year: "2026",
     stack: ["React", "FastAPI", "MongoDB", "LLM", "Scikit-learn", "JWT"],
-    // The public repo is empty; set this back to the repo URL once the code is pushed
-    githubUrl: null,
-    repoNote: "Code not yet public",
+    githubUrl: "https://github.com/Manasipatil23/campus_connect_project",
     architecture: [
       { stage: "React client", items: ["Role-based views", "KPI dashboards"] },
       { stage: "FastAPI service", items: ["JWT-secured REST APIs", "Role-based insights"] },
