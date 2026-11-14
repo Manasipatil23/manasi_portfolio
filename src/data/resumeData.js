@@ -180,6 +180,8 @@ export const projectsData = [
     year: "2026",
     stack: ["React", "FastAPI", "MongoDB", "LLM", "Scikit-learn", "JWT"],
     githubUrl: "https://github.com/Manasipatil23/campus_connect_project",
+    // Full walkthrough recording of the app
+    demoVideoUrl: "https://drive.google.com/drive/folders/1Ji_-87Q567Xu4wWMTxj5yoNEiEzpykRj?usp=sharing",
     architecture: [
       { stage: "React client", items: ["Role-based views", "KPI dashboards"] },
       { stage: "FastAPI service", items: ["JWT-secured REST APIs", "Role-based insights"] },

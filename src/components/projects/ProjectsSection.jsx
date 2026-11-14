@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { projectsData } from '../../data/resumeData';
-import { Github, ArrowUpRight, CheckCircle2, ChevronDown, Lock } from 'lucide-react';
+import { Github, ArrowUpRight, CheckCircle2, ChevronDown, Lock, PlayCircle } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeader from '../ui/SectionHeader';
@@ -28,6 +28,23 @@ function RepoLink({ project }) {
     >
       <Github className="w-3.5 h-3.5" />
       <span>View Repo</span>
+      <ArrowUpRight className="w-3 h-3 opacity-70" />
+    </a>
+  );
+}
+
+function DemoLink({ project }) {
+  if (!project.demoVideoUrl) return null;
+  return (
+    <a
+      href={project.demoVideoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Full walkthrough video (Google Drive)"
+      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#D9C9B7] bg-[#F5F0E8] hover:bg-white text-[#174B79] font-mono text-xs font-semibold transition-all shrink-0 self-start focus:outline-none focus:ring-2 focus:ring-[#E9784F] hover:shadow-sm"
+    >
+      <PlayCircle className="w-3.5 h-3.5 text-[#E9784F]" />
+      <span>Watch demo</span>
       <ArrowUpRight className="w-3 h-3 opacity-70" />
     </a>
   );
@@ -64,7 +81,10 @@ function CaseStudy({ project, index }) {
             {project.tagline}
           </p>
         </div>
-        <RepoLink project={project} />
+        <div className="flex flex-wrap gap-2 shrink-0 self-start sm:justify-end">
+          <DemoLink project={project} />
+          <RepoLink project={project} />
+        </div>
       </header>
 
       {/* Problem + Outcome */}
